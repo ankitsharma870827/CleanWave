@@ -1,0 +1,1433 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Login | CleanWave</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        /* =====================================================
+           LOGIN PAGE
+        ===================================================== */
+
+        .login-page {
+
+            min-height:
+                calc(100vh - 75px);
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+        }
+
+
+        /* =====================================================
+           LEFT SIDE
+        ===================================================== */
+
+        .login-visual {
+
+            position:
+                relative;
+
+            min-height:
+                650px;
+
+            overflow:
+                hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0d2f25,
+                    #1f5945
+                );
+
+            display:
+                flex;
+
+            align-items:
+                flex-end;
+
+            padding:
+                55px 7%;
+
+        }
+
+
+        .login-visual::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            inset:
+                0;
+
+            background-image:
+                url(
+                    "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=1400&q=85"
+                );
+
+            background-size:
+                cover;
+
+            background-position:
+                center;
+
+            opacity:
+                .28;
+
+        }
+
+
+        .login-visual::after {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            inset:
+                0;
+
+            background:
+                linear-gradient(
+                    transparent 20%,
+                    rgba(7,30,23,.9) 100%
+                );
+
+        }
+
+
+        .visual-content {
+
+            position:
+                relative;
+
+            z-index:
+                2;
+
+            color:
+                white;
+
+            max-width:
+                520px;
+
+        }
+
+
+        .visual-content .eyebrow {
+
+            color:
+                #a7d4bd;
+
+        }
+
+
+        .visual-content h1 {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                clamp(42px, 5vw, 68px);
+
+            line-height:
+                .95;
+
+            letter-spacing:
+                -3px;
+
+            margin:
+                14px 0;
+
+        }
+
+
+        .visual-content p {
+
+            color:
+                #c4d9d0;
+
+            font-size:
+                10px;
+
+            line-height:
+                1.8;
+
+            max-width:
+                430px;
+
+        }
+
+
+        .impact-points {
+
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                8px;
+
+            margin-top:
+                25px;
+
+        }
+
+
+        .impact-point {
+
+            padding:
+                9px 11px;
+
+            background:
+                rgba(255,255,255,.1);
+
+            border:
+                1px solid rgba(255,255,255,.14);
+
+            border-radius:
+                7px;
+
+            font-size:
+                7px;
+
+            backdrop-filter:
+                blur(5px);
+
+        }
+
+
+        /* =====================================================
+           RIGHT SIDE
+        ===================================================== */
+
+        .login-area {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            padding:
+                50px 7%;
+
+            background:
+                #fbfcfb;
+
+        }
+
+
+        .login-box {
+
+            width:
+                100%;
+
+            max-width:
+                430px;
+
+        }
+
+
+        .login-box h2 {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                34px;
+
+            letter-spacing:
+                -1.5px;
+
+            margin-bottom:
+                8px;
+
+        }
+
+
+        .login-subtitle {
+
+            color:
+                var(--muted);
+
+            font-size:
+                9px;
+
+            line-height:
+                1.7;
+
+            margin-bottom:
+                27px;
+
+        }
+
+
+        /* =====================================================
+           ACCOUNT TYPE
+        ===================================================== */
+
+        .account-types {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:
+                8px;
+
+            margin-bottom:
+                22px;
+
+        }
+
+
+        .account-type {
+
+            position:
+                relative;
+
+        }
+
+
+        .account-type input {
+
+            position:
+                absolute;
+
+            opacity:
+                0;
+
+        }
+
+
+        .account-type label {
+
+            display:
+                block;
+
+            padding:
+                14px;
+
+            text-align:
+                center;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                8px;
+
+            cursor:
+                pointer;
+
+            font-size:
+                8px;
+
+            font-weight:
+                700;
+
+            transition:
+                .2s;
+
+        }
+
+
+        .account-type label:hover {
+
+            border-color:
+                var(--green);
+
+        }
+
+
+        .account-type input:checked + label {
+
+            background:
+                var(--green-light);
+
+            border-color:
+                var(--green);
+
+            color:
+                #39755c;
+
+        }
+
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
+        .login-form {
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            gap:
+                16px;
+
+        }
+
+
+        .input-group {
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            gap:
+                6px;
+
+        }
+
+
+        .input-group label {
+
+            font-size:
+                8px;
+
+            font-weight:
+                700;
+
+            color:
+                #405c51;
+
+        }
+
+
+        .input-wrapper {
+
+            position:
+                relative;
+
+        }
+
+
+        .input-wrapper input {
+
+            width:
+                100%;
+
+            box-sizing:
+                border-box;
+
+            padding:
+                13px 42px 13px 13px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                7px;
+
+            background:
+                white;
+
+            font-family:
+                inherit;
+
+            font-size:
+                9px;
+
+            outline:
+                none;
+
+        }
+
+
+        .input-wrapper input:focus {
+
+            border-color:
+                var(--green);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(54,118,91,.08);
+
+        }
+
+
+        .toggle-password {
+
+            position:
+                absolute;
+
+            right:
+                10px;
+
+            top:
+                50%;
+
+            transform:
+                translateY(-50%);
+
+            border:
+                none;
+
+            background:
+                none;
+
+            cursor:
+                pointer;
+
+            font-size:
+                13px;
+
+            opacity:
+                .65;
+
+        }
+
+
+        /* =====================================================
+           FORM OPTIONS
+        ===================================================== */
+
+        .form-options {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+
+            margin-top:
+                -3px;
+
+        }
+
+
+        .remember {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                6px;
+
+            color:
+                var(--muted);
+
+            font-size:
+                7px;
+
+        }
+
+
+        .remember input {
+
+            accent-color:
+                var(--green);
+
+        }
+
+
+        .forgot {
+
+            color:
+                var(--green);
+
+            text-decoration:
+                none;
+
+            font-size:
+                7px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        /* =====================================================
+           LOGIN BUTTON
+        ===================================================== */
+
+        .login-button {
+
+            width:
+                100%;
+
+            padding:
+                14px;
+
+            border:
+                none;
+
+            border-radius:
+                7px;
+
+            background:
+                var(--dark);
+
+            color:
+                white;
+
+            font-family:
+                inherit;
+
+            font-size:
+                9px;
+
+            font-weight:
+                700;
+
+            cursor:
+                pointer;
+
+            transition:
+                .2s;
+
+        }
+
+
+        .login-button:hover {
+
+            background:
+                var(--green);
+
+            transform:
+                translateY(-1px);
+
+        }
+
+
+        /* =====================================================
+           MESSAGE
+        ===================================================== */
+
+        .login-message {
+
+            display:
+                none;
+
+            padding:
+                11px 13px;
+
+            border-radius:
+                7px;
+
+            font-size:
+                8px;
+
+            line-height:
+                1.5;
+
+        }
+
+
+        .login-message.error {
+
+            display:
+                block;
+
+            background:
+                #faeeee;
+
+            color:
+                #98534c;
+
+            border:
+                1px solid #efd6d2;
+
+        }
+
+
+        .login-message.success {
+
+            display:
+                block;
+
+            background:
+                #eaf6ef;
+
+            color:
+                #39745a;
+
+            border:
+                1px solid #d2e9db;
+
+        }
+
+
+        /* =====================================================
+           DEMO INFORMATION
+        ===================================================== */
+
+        .demo-box {
+
+            margin-top:
+                20px;
+
+            padding:
+                14px;
+
+            background:
+                #f3f7f5;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                8px;
+
+        }
+
+
+        .demo-box strong {
+
+            display:
+                block;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                8px;
+
+            margin-bottom:
+                6px;
+
+        }
+
+
+        .demo-box p {
+
+            color:
+                var(--muted);
+
+            font-size:
+                7px;
+
+            line-height:
+                1.6;
+
+        }
+
+
+        /* =====================================================
+           REGISTER LINK
+        ===================================================== */
+
+        .register-link {
+
+            text-align:
+                center;
+
+            margin-top:
+                22px;
+
+            color:
+                var(--muted);
+
+            font-size:
+                8px;
+
+        }
+
+
+        .register-link a {
+
+            color:
+                var(--green);
+
+            font-weight:
+                700;
+
+            text-decoration:
+                none;
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media(max-width: 850px) {
+
+            .login-page {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .login-visual {
+
+                min-height:
+                    450px;
+
+            }
+
+        }
+
+
+        @media(max-width: 500px) {
+
+            .login-visual {
+
+                min-height:
+                    380px;
+
+                padding:
+                    35px 7%;
+
+            }
+
+
+            .login-area {
+
+                padding:
+                    40px 7%;
+
+            }
+
+
+            .account-types {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="nav">
+
+    <a
+        href="index.html"
+        class="logo"
+    >
+        🌊 Clean<span>Wave</span>
+    </a>
+
+
+    <nav class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="events.html">
+            Cleanup Drives
+        </a>
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="admin.html">
+            Admin
+        </a>
+
+        <a
+            href="login.html"
+            class="nav-btn active"
+        >
+            Volunteer Login
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     LOGIN PAGE
+===================================================== -->
+
+<main class="login-page">
+
+
+    <!-- =================================================
+         VISUAL SIDE
+    ================================================= -->
+
+    <section class="login-visual">
+
+
+        <div class="visual-content">
+
+            <span class="eyebrow">
+                WELCOME BACK
+            </span>
+
+
+            <h1>
+                Keep the
+                <br>
+                wave going.
+            </h1>
+
+
+            <p>
+
+                Sign in to manage your volunteer
+                participation, explore cleanup drives
+                and track your environmental impact.
+
+            </p>
+
+
+            <div class="impact-points">
+
+                <span class="impact-point">
+                    ♻️ Recover Waste
+                </span>
+
+                <span class="impact-point">
+                    👥 Join Volunteers
+                </span>
+
+                <span class="impact-point">
+                    🌊 Protect Oceans
+                </span>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         LOGIN FORM
+    ================================================= -->
+
+    <section class="login-area">
+
+
+        <div class="login-box">
+
+
+            <span class="eyebrow">
+                CLEANWAVE ACCOUNT
+            </span>
+
+
+            <h2>
+                Sign in
+            </h2>
+
+
+            <p class="login-subtitle">
+
+                Access your CleanWave account and
+                continue making a difference.
+
+            </p>
+
+
+
+            <!-- ACCOUNT TYPE -->
+
+            <div class="account-types">
+
+
+                <div class="account-type">
+
+                    <input
+                        type="radio"
+                        id="volunteerAccount"
+                        name="accountType"
+                        value="volunteer"
+                        checked
+                    >
+
+                    <label
+                        for="volunteerAccount"
+                    >
+                        👤 Volunteer
+                    </label>
+
+                </div>
+
+
+                <div class="account-type">
+
+                    <input
+                        type="radio"
+                        id="adminAccount"
+                        name="accountType"
+                        value="admin"
+                    >
+
+                    <label
+                        for="adminAccount"
+                    >
+                        ⚙️ Admin
+                    </label>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- FORM -->
+
+            <form
+                class="login-form"
+                id="loginForm"
+            >
+
+
+                <!-- EMAIL -->
+
+                <div class="input-group">
+
+                    <label for="email">
+                        EMAIL ADDRESS
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="you@example.com"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PASSWORD -->
+
+                <div class="input-group">
+
+                    <label for="password">
+                        PASSWORD
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            minlength="6"
+                            required
+                        >
+
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            id="togglePassword"
+                            aria-label="Show password"
+                        >
+                            👁️
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- OPTIONS -->
+
+                <div class="form-options">
+
+                    <label class="remember">
+
+                        <input
+                            type="checkbox"
+                            id="remember"
+                        >
+
+                        Remember me
+
+                    </label>
+
+
+                    <a
+                        href="#"
+                        class="forgot"
+                        id="forgotPassword"
+                    >
+                        Forgot password?
+                    </a>
+
+                </div>
+
+
+
+                <!-- MESSAGE -->
+
+                <div
+                    class="login-message"
+                    id="loginMessage"
+                ></div>
+
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="login-button"
+                >
+                    Sign In →
+                </button>
+
+
+            </form>
+
+
+
+            <!-- DEMO -->
+
+            <div class="demo-box">
+
+                <strong>
+                    DEMO LOGIN
+                </strong>
+
+                <p>
+
+                    This is a frontend-only project.
+                    No real authentication server is connected.
+                    Any valid email with a password of
+                    6 or more characters can continue.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- REGISTER -->
+
+            <p class="register-link">
+
+                Don't have an account?
+
+                <a href="register.html">
+                    Register as a volunteer
+                </a>
+
+            </p>
+
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+    /* =====================================================
+       PASSWORD SHOW / HIDE
+    ===================================================== */
+
+    const passwordInput =
+        document.getElementById(
+            "password"
+        );
+
+
+    const togglePassword =
+        document.getElementById(
+            "togglePassword"
+        );
+
+
+    togglePassword.addEventListener(
+        "click",
+        function() {
+
+            if (
+                passwordInput.type ===
+                "password"
+            ) {
+
+                passwordInput.type =
+                    "text";
+
+                togglePassword.textContent =
+                    "🙈";
+
+            }
+            else {
+
+                passwordInput.type =
+                    "password";
+
+                togglePassword.textContent =
+                    "👁️";
+
+            }
+
+        }
+    );
+
+
+
+    /* =====================================================
+       LOGIN FORM
+    ===================================================== */
+
+    const loginForm =
+        document.getElementById(
+            "loginForm"
+        );
+
+
+    const loginMessage =
+        document.getElementById(
+            "loginMessage"
+        );
+
+
+    loginForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const email =
+                document.getElementById(
+                    "email"
+                ).value.trim();
+
+
+            const password =
+                passwordInput.value;
+
+
+            const accountType =
+                document.querySelector(
+                    'input[name="accountType"]:checked'
+                ).value;
+
+
+            /* CLEAR MESSAGE */
+
+            loginMessage.className =
+                "login-message";
+
+
+            loginMessage.textContent =
+                "";
+
+
+
+            /* EMAIL VALIDATION */
+
+            const emailPattern =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+            if (
+                !emailPattern.test(email)
+            ) {
+
+                loginMessage.className =
+                    "login-message error";
+
+                loginMessage.textContent =
+                    "Please enter a valid email address.";
+
+                return;
+
+            }
+
+
+
+            /* PASSWORD VALIDATION */
+
+            if (
+                password.length < 6
+            ) {
+
+                loginMessage.className =
+                    "login-message error";
+
+                loginMessage.textContent =
+                    "Password must contain at least 6 characters.";
+
+                return;
+
+            }
+
+
+
+            /* SAVE LOGIN */
+
+            localStorage.setItem(
+                "cleanwaveLogin",
+                JSON.stringify({
+
+                    email:
+                        email,
+
+                    accountType:
+                        accountType,
+
+                    loginTime:
+                        new Date().toISOString()
+
+                })
+            );
+
+
+
+            /* SUCCESS */
+
+            loginMessage.className =
+                "login-message success";
+
+
+            loginMessage.textContent =
+                "Login successful! Redirecting...";
+
+
+
+            /*
+             * Redirect according to account type.
+             */
+
+            setTimeout(
+                function() {
+
+                    if (
+                        accountType ===
+                        "admin"
+                    ) {
+
+                        window.location.href =
+                            "admin.html";
+
+                    }
+                    else {
+
+                        window.location.href =
+                            "dashboard.html";
+
+                    }
+
+                },
+                900
+            );
+
+        }
+    );
+
+
+
+    /* =====================================================
+       FORGOT PASSWORD
+    ===================================================== */
+
+    document
+        .getElementById(
+            "forgotPassword"
+        )
+        .addEventListener(
+            "click",
+            function(event) {
+
+                event.preventDefault();
+
+
+                alert(
+                    "Demo project: Password recovery is not connected to a real backend."
+                );
+
+            }
+        );
+
+
+</script>
+
+
+</body>
+
+</html>
+```

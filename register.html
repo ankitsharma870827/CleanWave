@@ -1,0 +1,2327 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Volunteer Registration | CleanWave</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        /* =====================================================
+           PAGE HEADER
+        ===================================================== */
+
+        .register-header {
+
+            padding:
+                70px 7% 50px;
+
+            background:
+                #eaf2ee;
+
+        }
+
+
+        .register-header h1 {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                clamp(42px, 6vw, 72px);
+
+            line-height:
+                .95;
+
+            letter-spacing:
+                -3px;
+
+            margin:
+                12px 0 15px;
+
+        }
+
+
+        .register-header p {
+
+            max-width:
+                600px;
+
+            color:
+                var(--muted);
+
+            font-size:
+                10px;
+
+            line-height:
+                1.8;
+
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        .register-main {
+
+            padding:
+                55px 7% 90px;
+
+        }
+
+
+        .register-layout {
+
+            max-width:
+                1200px;
+
+            margin:
+                auto;
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1.2fr .8fr;
+
+            gap:
+                25px;
+
+            align-items:
+                start;
+
+        }
+
+
+        /* =====================================================
+           FORM CARD
+        ===================================================== */
+
+        .form-card {
+
+            background:
+                white;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                15px;
+
+            padding:
+                30px;
+
+        }
+
+
+        .form-card h2 {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                25px;
+
+            margin-bottom:
+                6px;
+
+        }
+
+
+        .form-intro {
+
+            color:
+                var(--muted);
+
+            font-size:
+                9px;
+
+            margin-bottom:
+                30px;
+
+        }
+
+
+        /* =====================================================
+           FORM SECTIONS
+        ===================================================== */
+
+        .form-section {
+
+            margin-bottom:
+                30px;
+
+        }
+
+
+        .form-section-title {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                9px;
+
+            margin-bottom:
+                17px;
+
+        }
+
+
+        .form-number {
+
+            width:
+                25px;
+
+            height:
+                25px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border-radius:
+                50%;
+
+            background:
+                var(--dark);
+
+            color:
+                white;
+
+            font-size:
+                8px;
+
+        }
+
+
+        .form-section-title h3 {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                15px;
+
+        }
+
+
+        /* =====================================================
+           GRID
+        ===================================================== */
+
+        .form-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(2,1fr);
+
+            gap:
+                14px;
+
+        }
+
+
+        .form-group {
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            gap:
+                7px;
+
+        }
+
+
+        .form-group.full {
+
+            grid-column:
+                1 / -1;
+
+        }
+
+
+        .form-group label {
+
+            font-size:
+                8px;
+
+            font-weight:
+                700;
+
+            color:
+                #425b53;
+
+        }
+
+
+        .required {
+
+            color:
+                #b45656;
+
+        }
+
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+
+            width:
+                100%;
+
+            padding:
+                12px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                7px;
+
+            background:
+                #fbfdfc;
+
+            color:
+                var(--text);
+
+            font-size:
+                9px;
+
+        }
+
+
+        .form-group textarea {
+
+            min-height:
+                90px;
+
+            resize:
+                vertical;
+
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+
+            border-color:
+                var(--green);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(79,146,117,.1);
+
+        }
+
+
+        /* =====================================================
+           GROUP SIZE
+        ===================================================== */
+
+        .size-options {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap:
+                9px;
+
+        }
+
+
+        .size-option {
+
+            position:
+                relative;
+
+        }
+
+
+        .size-option input {
+
+            position:
+                absolute;
+
+            opacity:
+                0;
+
+        }
+
+
+        .size-option label {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            min-height:
+                55px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                8px;
+
+            cursor:
+                pointer;
+
+            text-align:
+                center;
+
+            font-size:
+                9px;
+
+            transition:
+                .2s;
+
+        }
+
+
+        .size-option input:checked + label {
+
+            background:
+                var(--green-light);
+
+            border-color:
+                var(--green);
+
+            color:
+                var(--dark);
+
+            font-weight:
+                700;
+
+        }
+
+
+        /* =====================================================
+           SAFETY CHECKBOXES
+        ===================================================== */
+
+        .equipment-list {
+
+            display:
+                grid;
+
+            gap:
+                10px;
+
+        }
+
+
+        .equipment-item {
+
+            display:
+                flex;
+
+            align-items:
+                flex-start;
+
+            gap:
+                10px;
+
+            padding:
+                13px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                8px;
+
+            background:
+                #fbfdfc;
+
+        }
+
+
+        .equipment-item input {
+
+            width:
+                15px;
+
+            height:
+                15px;
+
+            margin-top:
+                2px;
+
+            accent-color:
+                var(--green);
+
+            cursor:
+                pointer;
+
+        }
+
+
+        .equipment-item label {
+
+            cursor:
+                pointer;
+
+            font-size:
+                8px;
+
+            line-height:
+                1.6;
+
+        }
+
+
+        .equipment-item strong {
+
+            display:
+                block;
+
+            font-size:
+                9px;
+
+            margin-bottom:
+                2px;
+
+        }
+
+
+        .equipment-item span {
+
+            color:
+                var(--muted);
+
+        }
+
+
+        /* =====================================================
+           TERMS
+        ===================================================== */
+
+        .terms {
+
+            display:
+                flex;
+
+            gap:
+                10px;
+
+            padding:
+                15px;
+
+            background:
+                #f1f7f4;
+
+            border-radius:
+                8px;
+
+            margin-bottom:
+                20px;
+
+        }
+
+
+        .terms input {
+
+            width:
+                15px;
+
+            height:
+                15px;
+
+            accent-color:
+                var(--green);
+
+            flex-shrink:
+                0;
+
+        }
+
+
+        .terms label {
+
+            color:
+                #536b63;
+
+            font-size:
+                8px;
+
+            line-height:
+                1.7;
+
+        }
+
+
+        /* =====================================================
+           SUBMIT
+        ===================================================== */
+
+        .submit-btn {
+
+            width:
+                100%;
+
+            padding:
+                15px;
+
+            font-size:
+                9px;
+
+        }
+
+
+        /* =====================================================
+           SIDE PANEL
+        ===================================================== */
+
+        .side-column {
+
+            display:
+                grid;
+
+            gap:
+                15px;
+
+            position:
+                sticky;
+
+            top:
+                145px;
+
+        }
+
+
+        .event-summary {
+
+            background:
+                var(--dark);
+
+            color:
+                white;
+
+            border-radius:
+                15px;
+
+            padding:
+                25px;
+
+        }
+
+
+        .event-summary .eyebrow {
+
+            color:
+                #91c4a9;
+
+        }
+
+
+        .event-summary h2 {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                25px;
+
+            line-height:
+                1.05;
+
+            margin:
+                12px 0 18px;
+
+        }
+
+
+        .summary-row {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            gap:
+                15px;
+
+            padding:
+                12px 0;
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,.12);
+
+        }
+
+
+        .summary-row:last-child {
+
+            border-bottom:
+                none;
+
+        }
+
+
+        .summary-row span {
+
+            color:
+                #9dbab0;
+
+            font-size:
+                8px;
+
+        }
+
+
+        .summary-row strong {
+
+            font-size:
+                8px;
+
+            text-align:
+                right;
+
+        }
+
+
+        /* =====================================================
+           SAFETY CARD
+        ===================================================== */
+
+        .safety-card {
+
+            background:
+                white;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                15px;
+
+            padding:
+                22px;
+
+        }
+
+
+        .safety-card h3 {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                18px;
+
+            margin-bottom:
+                15px;
+
+        }
+
+
+        .safety-rule {
+
+            display:
+                flex;
+
+            gap:
+                10px;
+
+            padding:
+                11px 0;
+
+            border-bottom:
+                1px solid #edf1ef;
+
+        }
+
+
+        .safety-rule:last-child {
+
+            border-bottom:
+                none;
+
+        }
+
+
+        .safety-rule-icon {
+
+            width:
+                27px;
+
+            height:
+                27px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            background:
+                var(--green-light);
+
+            border-radius:
+                6px;
+
+            flex-shrink:
+                0;
+
+        }
+
+
+        .safety-rule strong {
+
+            display:
+                block;
+
+            font-size:
+                8px;
+
+            margin-bottom:
+                2px;
+
+        }
+
+
+        .safety-rule span {
+
+            display:
+                block;
+
+            color:
+                var(--muted);
+
+            font-size:
+                7px;
+
+            line-height:
+                1.5;
+
+        }
+
+
+        /* =====================================================
+           SUCCESS
+        ===================================================== */
+
+        .success-message {
+
+            display:
+                none;
+
+            position:
+                fixed;
+
+            inset:
+                0;
+
+            z-index:
+                500;
+
+            background:
+                rgba(4,35,31,.7);
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            padding:
+                20px;
+
+        }
+
+
+        .success-box {
+
+            width:
+                100%;
+
+            max-width:
+                450px;
+
+            background:
+                white;
+
+            border-radius:
+                16px;
+
+            padding:
+                35px;
+
+            text-align:
+                center;
+
+            animation:
+                popup .25s ease;
+
+        }
+
+
+        @keyframes popup {
+
+            from {
+
+                transform:
+                    scale(.9);
+
+                opacity:
+                    0;
+
+            }
+
+            to {
+
+                transform:
+                    scale(1);
+
+                opacity:
+                    1;
+
+            }
+
+        }
+
+
+        .success-icon {
+
+            width:
+                65px;
+
+            height:
+                65px;
+
+            margin:
+                0 auto 18px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border-radius:
+                50%;
+
+            background:
+                var(--green-light);
+
+            font-size:
+                27px;
+
+        }
+
+
+        .success-box h2 {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                27px;
+
+            margin-bottom:
+                10px;
+
+        }
+
+
+        .success-box p {
+
+            color:
+                var(--muted);
+
+            font-size:
+                9px;
+
+            line-height:
+                1.8;
+
+            margin-bottom:
+                20px;
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media(max-width: 900px) {
+
+            .register-layout {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+            .side-column {
+
+                position:
+                    relative;
+
+                top:
+                    0;
+
+            }
+
+        }
+
+
+        @media(max-width: 600px) {
+
+            .register-main {
+
+                padding:
+                    35px 5% 70px;
+
+            }
+
+            .form-card {
+
+                padding:
+                    20px;
+
+            }
+
+            .form-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+            .form-group.full {
+
+                grid-column:
+                    auto;
+
+            }
+
+            .size-options {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="nav">
+
+    <a
+        href="index.html"
+        class="logo"
+    >
+        🌊 Clean<span>Wave</span>
+    </a>
+
+
+    <nav class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a
+            href="events.html"
+            class="active"
+        >
+            Cleanup Drives
+        </a>
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="admin.html">
+            Admin
+        </a>
+
+        <a
+            href="login.html"
+            class="nav-btn"
+        >
+            Volunteer Login
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<section class="register-header">
+
+    <span class="eyebrow">
+        VOLUNTEER RSVP
+    </span>
+
+
+    <h1>
+        Register for
+        <br>
+        a cleanup.
+    </h1>
+
+
+    <p>
+
+        Complete the form below to reserve your place.
+        You can join individually or register a group
+        of volunteers.
+
+    </p>
+
+</section>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="register-main">
+
+    <div class="register-layout">
+
+
+        <!-- =================================================
+             FORM
+        ================================================= -->
+
+        <form
+            class="form-card"
+            id="registrationForm"
+        >
+
+
+            <h2>
+                Volunteer Registration
+            </h2>
+
+
+            <p class="form-intro">
+
+                Fields marked with
+                <span class="required">*</span>
+                are required.
+
+            </p>
+
+
+
+            <!-- =================================================
+                 SECTION 1
+            ================================================= -->
+
+            <div class="form-section">
+
+                <div class="form-section-title">
+
+                    <div class="form-number">
+                        01
+                    </div>
+
+                    <h3>
+                        Select Cleanup Drive
+                    </h3>
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group full">
+
+                        <label>
+                            Cleanup Drive
+                            <span class="required">*</span>
+                        </label>
+
+
+                        <select
+                            id="eventSelect"
+                            required
+                        >
+
+                            <option value="">
+                                Select an upcoming drive
+                            </option>
+
+                            <option
+                                value="Sunrise Beach Cleanup"
+                            >
+                                Sunrise Beach Cleanup — 26 Oct
+                            </option>
+
+                            <option
+                                value="River Plastic Recovery"
+                            >
+                                River Plastic Recovery — 28 Oct
+                            </option>
+
+                            <option
+                                value="Green Park Community Cleanup"
+                            >
+                                Green Park Community Cleanup — 30 Oct
+                            </option>
+
+                            <option
+                                value="Coastal Plastic Recovery Drive"
+                            >
+                                Coastal Plastic Recovery Drive — 02 Nov
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Preferred Arrival Time
+                            <span class="required">*</span>
+                        </label>
+
+                        <select required>
+
+                            <option value="">
+                                Select time
+                            </option>
+
+                            <option>
+                                06:30 AM
+                            </option>
+
+                            <option>
+                                07:00 AM
+                            </option>
+
+                            <option>
+                                07:30 AM
+                            </option>
+
+                            <option>
+                                08:00 AM
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Participation Type
+                            <span class="required">*</span>
+                        </label>
+
+                        <select
+                            id="participationType"
+                            required
+                        >
+
+                            <option value="">
+                                Select type
+                            </option>
+
+                            <option value="Individual">
+                                Individual
+                            </option>
+
+                            <option value="Group">
+                                Group
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SECTION 2
+            ================================================= -->
+
+            <div class="form-section">
+
+                <div class="form-section-title">
+
+                    <div class="form-number">
+                        02
+                    </div>
+
+                    <h3>
+                        Volunteer Details
+                    </h3>
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Full Name
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            placeholder="Enter your name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Email Address
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="you@example.com"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Phone Number
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="Enter phone number"
+                            pattern="[0-9]{10}"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            City
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            placeholder="Enter your city"
+                            required
+                        >
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SECTION 3
+            ================================================= -->
+
+            <div class="form-section">
+
+                <div class="form-section-title">
+
+                    <div class="form-number">
+                        03
+                    </div>
+
+                    <h3>
+                        Volunteer Group Size
+                    </h3>
+
+                </div>
+
+
+                <div class="size-options">
+
+
+                    <div class="size-option">
+
+                        <input
+                            type="radio"
+                            name="groupSize"
+                            id="size1"
+                            value="1"
+                            checked
+                        >
+
+                        <label for="size1">
+                            1 Person
+                        </label>
+
+                    </div>
+
+
+                    <div class="size-option">
+
+                        <input
+                            type="radio"
+                            name="groupSize"
+                            id="size2"
+                            value="2-5"
+                        >
+
+                        <label for="size2">
+                            2–5 People
+                        </label>
+
+                    </div>
+
+
+                    <div class="size-option">
+
+                        <input
+                            type="radio"
+                            name="groupSize"
+                            id="size3"
+                            value="6-10"
+                        >
+
+                        <label for="size3">
+                            6–10 People
+                        </label>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SECTION 4
+            ================================================= -->
+
+            <div class="form-section">
+
+                <div class="form-section-title">
+
+                    <div class="form-number">
+                        04
+                    </div>
+
+                    <h3>
+                        Safety Equipment Confirmation
+                    </h3>
+
+                </div>
+
+
+                <div class="equipment-list">
+
+
+                    <div class="equipment-item">
+
+                        <input
+                            type="checkbox"
+                            id="gloves"
+                            required
+                        >
+
+                        <label for="gloves">
+
+                            <strong>
+                                Protective Gloves
+                            </strong>
+
+                            <span>
+                                I understand that gloves should
+                                be worn during waste collection.
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="equipment-item">
+
+                        <input
+                            type="checkbox"
+                            id="water"
+                            required
+                        >
+
+                        <label for="water">
+
+                            <strong>
+                                Drinking Water
+                            </strong>
+
+                            <span>
+                                I will carry enough drinking
+                                water and stay hydrated.
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="equipment-item">
+
+                        <input
+                            type="checkbox"
+                            id="safetyRules"
+                            required
+                        >
+
+                        <label for="safetyRules">
+
+                            <strong>
+                                Safety Guidelines
+                            </strong>
+
+                            <span>
+                                I agree not to touch hazardous
+                                medical waste or unknown materials.
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SECTION 5
+            ================================================= -->
+
+            <div class="form-section">
+
+                <div class="form-section-title">
+
+                    <div class="form-number">
+                        05
+                    </div>
+
+                    <h3>
+                        Additional Information
+                    </h3>
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group full">
+
+                        <label>
+                            Notes / Accessibility Requirements
+                        </label>
+
+                        <textarea
+                            placeholder="Anything the cleanup coordinator should know?"
+                        ></textarea>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- TERMS -->
+
+            <div class="terms">
+
+                <input
+                    type="checkbox"
+                    id="terms"
+                    required
+                >
+
+                <label for="terms">
+
+                    I confirm that the information provided
+                    is correct and I agree to follow the
+                    cleanup coordinator's instructions and
+                    safety guidelines.
+
+                </label>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn submit-btn"
+            >
+                Confirm Volunteer Registration →
+            </button>
+
+
+        </form>
+
+
+
+        <!-- =================================================
+             SIDE COLUMN
+        ================================================= -->
+
+        <aside class="side-column">
+
+
+            <!-- EVENT SUMMARY -->
+
+            <div class="event-summary">
+
+                <span class="eyebrow">
+                    SELECTED DRIVE
+                </span>
+
+
+                <h2 id="summaryEvent">
+                    Choose a cleanup drive
+                </h2>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Date
+                    </span>
+
+                    <strong id="summaryDate">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Meeting Point
+                    </span>
+
+                    <strong id="summaryPoint">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Volunteers
+                    </span>
+
+                    <strong id="summaryCapacity">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Your Group
+                    </span>
+
+                    <strong id="summaryGroup">
+                        1 Person
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SAFETY -->
+
+            <div class="safety-card">
+
+                <h3>
+                    Safety First
+                </h3>
+
+
+                <div class="safety-rule">
+
+                    <div class="safety-rule-icon">
+                        🧤
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Wear gloves
+                        </strong>
+
+                        <span>
+                            Protect your hands while
+                            collecting waste.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="safety-rule">
+
+                    <div class="safety-rule-icon">
+                        ⚠️
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Avoid hazardous waste
+                        </strong>
+
+                        <span>
+                            Never touch medical or
+                            unknown hazardous materials.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="safety-rule">
+
+                    <div class="safety-rule-icon">
+                        💧
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Stay hydrated
+                        </strong>
+
+                        <span>
+                            Carry water and take
+                            regular breaks.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="safety-rule">
+
+                    <div class="safety-rule-icon">
+                        👥
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Follow your coordinator
+                        </strong>
+
+                        <span>
+                            Stay inside the designated
+                            cleanup area.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </aside>
+
+    </div>
+
+</main>
+
+
+
+<!-- =====================================================
+     SUCCESS POPUP
+===================================================== -->
+
+<div
+    class="success-message"
+    id="successMessage"
+>
+
+    <div class="success-box">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+
+        <h2>
+            Registration Confirmed!
+        </h2>
+
+
+        <p>
+
+            Thank you for volunteering with CleanWave.
+            Your registration has been recorded successfully.
+
+            <br><br>
+
+            We look forward to seeing you at the cleanup drive.
+
+        </p>
+
+
+        <button
+            class="btn"
+            id="closeSuccess"
+        >
+            Done →
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-logo">
+        🌊 Clean<span>Wave</span>
+    </div>
+
+    <p>
+        Community Cleanup & Environmental Impact Platform
+    </p>
+
+    <p class="copyright">
+        © 2026 CleanWave • Built for a cleaner tomorrow.
+    </p>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+    /* =====================================================
+       EVENT DATA
+    ===================================================== */
+
+    const eventData = {
+
+        "Sunrise Beach Cleanup": {
+
+            date: "26 October 2026",
+
+            point: "Point A — Main Gate",
+
+            capacity: "63 / 100"
+
+        },
+
+
+        "River Plastic Recovery": {
+
+            date: "28 October 2026",
+
+            point: "Gate 2 — Riverside Road",
+
+            capacity: "48 / 70"
+
+        },
+
+
+        "Green Park Community Cleanup": {
+
+            date: "30 October 2026",
+
+            point: "Main Entrance",
+
+            capacity: "31 / 80"
+
+        },
+
+
+        "Coastal Plastic Recovery Drive": {
+
+            date: "02 November 2026",
+
+            point: "Visitor Centre",
+
+            capacity: "51 / 60"
+
+        }
+
+    };
+
+
+
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
+
+    const eventSelect =
+        document.getElementById(
+            "eventSelect"
+        );
+
+
+    const participationType =
+        document.getElementById(
+            "participationType"
+        );
+
+
+    const groupSizeInputs =
+        document.querySelectorAll(
+            'input[name="groupSize"]'
+        );
+
+
+    const summaryEvent =
+        document.getElementById(
+            "summaryEvent"
+        );
+
+
+    const summaryDate =
+        document.getElementById(
+            "summaryDate"
+        );
+
+
+    const summaryPoint =
+        document.getElementById(
+            "summaryPoint"
+        );
+
+
+    const summaryCapacity =
+        document.getElementById(
+            "summaryCapacity"
+        );
+
+
+    const summaryGroup =
+        document.getElementById(
+            "summaryGroup"
+        );
+
+
+
+    /* =====================================================
+       URL EVENT SELECTION
+    ===================================================== */
+
+    const urlParams =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    const selectedEvent =
+        urlParams.get("event");
+
+
+    if (
+        selectedEvent &&
+        eventData[selectedEvent]
+    ) {
+
+        eventSelect.value =
+            selectedEvent;
+
+        updateEventSummary();
+
+    }
+
+
+
+    /* =====================================================
+       UPDATE EVENT SUMMARY
+    ===================================================== */
+
+    function updateEventSummary() {
+
+        const selected =
+            eventSelect.value;
+
+
+        if (
+            selected &&
+            eventData[selected]
+        ) {
+
+            const data =
+                eventData[selected];
+
+
+            summaryEvent.textContent =
+                selected;
+
+
+            summaryDate.textContent =
+                data.date;
+
+
+            summaryPoint.textContent =
+                data.point;
+
+
+            summaryCapacity.textContent =
+                data.capacity;
+
+        } else {
+
+            summaryEvent.textContent =
+                "Choose a cleanup drive";
+
+            summaryDate.textContent =
+                "—";
+
+            summaryPoint.textContent =
+                "—";
+
+            summaryCapacity.textContent =
+                "—";
+
+        }
+
+    }
+
+
+    eventSelect.addEventListener(
+        "change",
+        updateEventSummary
+    );
+
+
+
+    /* =====================================================
+       GROUP SIZE
+    ===================================================== */
+
+    groupSizeInputs.forEach(
+        input => {
+
+            input.addEventListener(
+                "change",
+                () => {
+
+                    let text =
+                        "1 Person";
+
+
+                    if (
+                        input.value === "2-5"
+                    ) {
+
+                        text =
+                            "2–5 People";
+
+                    }
+
+
+                    if (
+                        input.value === "6-10"
+                    ) {
+
+                        text =
+                            "6–10 People";
+
+                    }
+
+
+                    summaryGroup.textContent =
+                        text;
+
+                }
+            );
+
+        }
+    );
+
+
+
+    /* =====================================================
+       PARTICIPATION TYPE
+    ===================================================== */
+
+    participationType.addEventListener(
+        "change",
+        () => {
+
+            if (
+                participationType.value === "Group"
+            ) {
+
+                document.getElementById(
+                    "size2"
+                ).checked = true;
+
+                summaryGroup.textContent =
+                    "2–5 People";
+
+            }
+
+
+            if (
+                participationType.value === "Individual"
+            ) {
+
+                document.getElementById(
+                    "size1"
+                ).checked = true;
+
+                summaryGroup.textContent =
+                    "1 Person";
+
+            }
+
+        }
+    );
+
+
+
+    /* =====================================================
+       FORM SUBMISSION
+    ===================================================== */
+
+    const registrationForm =
+        document.getElementById(
+            "registrationForm"
+        );
+
+
+    const successMessage =
+        document.getElementById(
+            "successMessage"
+        );
+
+
+    registrationForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const name =
+                document.getElementById(
+                    "fullName"
+                ).value.trim();
+
+
+            const email =
+                document.getElementById(
+                    "email"
+                ).value.trim();
+
+
+            const phone =
+                document.getElementById(
+                    "phone"
+                ).value.trim();
+
+
+            if (
+                !name ||
+                !email ||
+                !phone
+            ) {
+
+                alert(
+                    "Please complete all required fields."
+                );
+
+                return;
+
+            }
+
+
+            successMessage.style.display =
+                "flex";
+
+
+            /*
+             * Save basic registration data
+             * in browser localStorage.
+             */
+
+            const registration = {
+
+                name: name,
+
+                email: email,
+
+                phone: phone,
+
+                event: eventSelect.value,
+
+                groupSize:
+                    document.querySelector(
+                        'input[name="groupSize"]:checked'
+                    ).value,
+
+                registeredAt:
+                    new Date().toLocaleString()
+
+            };
+
+
+            localStorage.setItem(
+                "cleanwaveRegistration",
+                JSON.stringify(registration)
+            );
+
+        }
+    );
+
+
+
+    /* =====================================================
+       CLOSE SUCCESS MESSAGE
+    ===================================================== */
+
+    document.getElementById(
+        "closeSuccess"
+    ).addEventListener(
+        "click",
+        () => {
+
+            successMessage.style.display =
+                "none";
+
+
+            window.location.href =
+                "dashboard.html";
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>
+```

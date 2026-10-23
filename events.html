@@ -1,0 +1,2258 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Cleanup Drives | CleanWave</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        /* =====================================================
+           PAGE HEADER
+        ===================================================== */
+
+        .page-header {
+
+            padding:
+                75px 7% 55px;
+
+            background:
+                #eaf2ee;
+
+        }
+
+
+        .page-header h1 {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                clamp(42px, 6vw, 75px);
+
+            line-height:
+                .95;
+
+            letter-spacing:
+                -3px;
+
+            margin:
+                12px 0 15px;
+
+        }
+
+
+        .page-header p {
+
+            max-width:
+                600px;
+
+            color:
+                var(--muted);
+
+            font-size:
+                10px;
+
+            line-height:
+                1.8;
+
+        }
+
+
+        /* =====================================================
+           FILTER BAR
+        ===================================================== */
+
+        .filter-section {
+
+            padding:
+                25px 7%;
+
+            background:
+                white;
+
+            border-bottom:
+                1px solid var(--border);
+
+            position:
+                sticky;
+
+            top:
+                74px;
+
+            z-index:
+                20;
+
+        }
+
+
+        .filter-bar {
+
+            max-width:
+                1300px;
+
+            margin:
+                auto;
+
+            display:
+                flex;
+
+            gap:
+                10px;
+
+            flex-wrap:
+                wrap;
+
+        }
+
+
+        .search-box {
+
+            flex:
+                1;
+
+            min-width:
+                220px;
+
+            position:
+                relative;
+
+        }
+
+
+        .search-box span {
+
+            position:
+                absolute;
+
+            left:
+                13px;
+
+            top:
+                50%;
+
+            transform:
+                translateY(-50%);
+
+        }
+
+
+        .search-box input {
+
+            width:
+                100%;
+
+            padding:
+                12px 12px 12px 38px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                7px;
+
+            font-family:
+                inherit;
+
+            font-size:
+                9px;
+
+            outline:
+                none;
+
+        }
+
+
+        .filter-select {
+
+            padding:
+                12px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                7px;
+
+            background:
+                white;
+
+            color:
+                var(--text);
+
+            font-family:
+                inherit;
+
+            font-size:
+                9px;
+
+            min-width:
+                145px;
+
+            cursor:
+                pointer;
+
+        }
+
+
+        /* =====================================================
+           MAIN LAYOUT
+        ===================================================== */
+
+        .events-main {
+
+            padding:
+                50px 7% 90px;
+
+        }
+
+
+        .events-layout {
+
+            max-width:
+                1300px;
+
+            margin:
+                auto;
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1.25fr .75fr;
+
+            gap:
+                25px;
+
+            align-items:
+                start;
+
+        }
+
+
+        /* =====================================================
+           EVENT LIST
+        ===================================================== */
+
+        .events-list {
+
+            display:
+                grid;
+
+            gap:
+                16px;
+
+        }
+
+
+        .results-header {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            margin-bottom:
+                5px;
+
+        }
+
+
+        .results-header strong {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                17px;
+
+        }
+
+
+        .results-count {
+
+            color:
+                var(--muted);
+
+            font-size:
+                8px;
+
+        }
+
+
+        /* =====================================================
+           EVENT CARD
+        ===================================================== */
+
+        .event-card {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                190px 1fr;
+
+            background:
+                white;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                13px;
+
+            overflow:
+                hidden;
+
+            transition:
+                .25s ease;
+
+        }
+
+
+        .event-card:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 15px 30px
+                rgba(12,55,47,.08);
+
+        }
+
+
+        .event-image {
+
+            min-height:
+                245px;
+
+            background-size:
+                cover;
+
+            background-position:
+                center;
+
+        }
+
+
+        .event-image.beach {
+
+            background-image:
+                url("images/beach-cleanup.jpg");
+
+        }
+
+
+        .event-image.river {
+
+            background-image:
+                url("images/river-cleanup.jpg");
+
+        }
+
+
+        .event-image.park {
+
+            background-image:
+                url("images/park-cleanup.jpg");
+
+        }
+
+
+        .event-image.coast {
+
+            background-image:
+                url("images/coastal-cleanup.jpg");
+
+        }
+
+
+        .event-details {
+
+            padding:
+                21px;
+
+        }
+
+
+        .event-top {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            gap:
+                15px;
+
+            margin-bottom:
+                10px;
+
+        }
+
+
+        .event-date {
+
+            display:
+                inline-block;
+
+            padding:
+                6px 8px;
+
+            background:
+                var(--green-light);
+
+            color:
+                #39755c;
+
+            border-radius:
+                5px;
+
+            font-size:
+                7px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .event-status {
+
+            font-size:
+                7px;
+
+            font-weight:
+                700;
+
+            padding:
+                6px 8px;
+
+            border-radius:
+                5px;
+
+        }
+
+
+        .event-status.available {
+
+            background:
+                #e8f5ec;
+
+            color:
+                #377454;
+
+        }
+
+
+        .event-status.limited {
+
+            background:
+                #fff5df;
+
+            color:
+                #9b7229;
+
+        }
+
+
+        .event-details h2 {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                21px;
+
+            line-height:
+                1.1;
+
+            margin-bottom:
+                7px;
+
+        }
+
+
+        .event-location {
+
+            color:
+                var(--muted);
+
+            font-size:
+                8px;
+
+            margin-bottom:
+                17px;
+
+        }
+
+
+        /* =====================================================
+           EVENT INFORMATION
+        ===================================================== */
+
+        .event-info {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(2,1fr);
+
+            gap:
+                10px;
+
+            margin-bottom:
+                17px;
+
+        }
+
+
+        .info-item {
+
+            padding:
+                10px;
+
+            background:
+                #f7faf8;
+
+            border-radius:
+                7px;
+
+        }
+
+
+        .info-item span {
+
+            display:
+                block;
+
+            color:
+                var(--muted);
+
+            font-size:
+                7px;
+
+            margin-bottom:
+                3px;
+
+        }
+
+
+        .info-item strong {
+
+            font-size:
+                8px;
+
+        }
+
+
+        /* =====================================================
+           CAPACITY
+        ===================================================== */
+
+        .capacity-header {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            color:
+                var(--muted);
+
+            font-size:
+                7px;
+
+            margin-bottom:
+                5px;
+
+        }
+
+
+        .capacity-bar {
+
+            height:
+                5px;
+
+            background:
+                #e4eee9;
+
+            border-radius:
+                20px;
+
+            overflow:
+                hidden;
+
+            margin-bottom:
+                12px;
+
+        }
+
+
+        .capacity-bar span {
+
+            display:
+                block;
+
+            height:
+                100%;
+
+            background:
+                var(--green);
+
+            border-radius:
+                20px;
+
+        }
+
+
+        .event-actions {
+
+            display:
+                flex;
+
+            gap:
+                8px;
+
+        }
+
+
+        .event-actions .btn {
+
+            flex:
+                1;
+
+        }
+
+
+        /* =====================================================
+           MAP
+        ===================================================== */
+
+        .map-card {
+
+            position:
+                sticky;
+
+            top:
+                145px;
+
+            background:
+                white;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                14px;
+
+            overflow:
+                hidden;
+
+        }
+
+
+        .map-header {
+
+            padding:
+                18px;
+
+            border-bottom:
+                1px solid var(--border);
+
+        }
+
+
+        .map-header h2 {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                19px;
+
+            margin-bottom:
+                5px;
+
+        }
+
+
+        .map-header p {
+
+            color:
+                var(--muted);
+
+            font-size:
+                8px;
+
+        }
+
+
+        .map {
+
+            height:
+                420px;
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
+            background:
+
+                linear-gradient(
+                    45deg,
+                    rgba(145,184,164,.35) 25%,
+                    transparent 25%,
+                    transparent 75%,
+                    rgba(145,184,164,.35) 75%
+                ),
+
+                linear-gradient(
+                    -45deg,
+                    rgba(145,184,164,.25) 25%,
+                    transparent 25%,
+                    transparent 75%,
+                    rgba(145,184,164,.25) 75%
+                ),
+
+                #dcebe4;
+
+            background-size:
+                80px 80px;
+
+        }
+
+
+        /* Roads */
+
+        .road {
+
+            position:
+                absolute;
+
+            background:
+                rgba(255,255,255,.85);
+
+            box-shadow:
+                0 0 0 2px rgba(170,190,181,.25);
+
+        }
+
+
+        .road.one {
+
+            width:
+                120%;
+
+            height:
+                25px;
+
+            top:
+                40%;
+
+            left:
+                -10%;
+
+            transform:
+                rotate(-13deg);
+
+        }
+
+
+        .road.two {
+
+            width:
+                110%;
+
+            height:
+                18px;
+
+            top:
+                64%;
+
+            left:
+                -5%;
+
+            transform:
+                rotate(22deg);
+
+        }
+
+
+        .road.three {
+
+            width:
+                25px;
+
+            height:
+                120%;
+
+            left:
+                52%;
+
+            top:
+                -10%;
+
+            transform:
+                rotate(8deg);
+
+        }
+
+
+        /* Map markers */
+
+        .map-marker {
+
+            position:
+                absolute;
+
+            width:
+                35px;
+
+            height:
+                35px;
+
+            border-radius:
+                50% 50% 50% 0;
+
+            background:
+                var(--dark);
+
+            color:
+                white;
+
+            transform:
+                rotate(-45deg);
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            cursor:
+                pointer;
+
+            box-shadow:
+                0 5px 15px
+                rgba(0,0,0,.18);
+
+            transition:
+                .2s;
+
+        }
+
+
+        .map-marker:hover {
+
+            transform:
+                rotate(-45deg)
+                scale(1.12);
+
+        }
+
+
+        .map-marker span {
+
+            transform:
+                rotate(45deg);
+
+            font-size:
+                13px;
+
+        }
+
+
+        .marker-1 {
+
+            top:
+                26%;
+
+            left:
+                32%;
+
+        }
+
+
+        .marker-2 {
+
+            top:
+                49%;
+
+            left:
+                68%;
+
+        }
+
+
+        .marker-3 {
+
+            top:
+                70%;
+
+            left:
+                43%;
+
+        }
+
+
+        .marker-4 {
+
+            top:
+                35%;
+
+            left:
+                77%;
+
+        }
+
+
+        /* Map legend */
+
+        .map-legend {
+
+            padding:
+                15px;
+
+            display:
+                grid;
+
+            gap:
+                8px;
+
+        }
+
+
+        .legend-item {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                8px;
+
+            font-size:
+                8px;
+
+            color:
+                var(--muted);
+
+        }
+
+
+        .legend-dot {
+
+            width:
+                9px;
+
+            height:
+                9px;
+
+            border-radius:
+                50%;
+
+            background:
+                var(--green);
+
+        }
+
+
+        /* =====================================================
+           NO RESULTS
+        ===================================================== */
+
+        .no-results {
+
+            display:
+                none;
+
+            text-align:
+                center;
+
+            padding:
+                45px;
+
+            background:
+                white;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                12px;
+
+            color:
+                var(--muted);
+
+            font-size:
+                9px;
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media(max-width: 1050px) {
+
+            .events-layout {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+            .map-card {
+
+                position:
+                    relative;
+
+                top:
+                    0;
+
+            }
+
+            .map {
+
+                height:
+                    350px;
+
+            }
+
+        }
+
+
+        @media(max-width: 650px) {
+
+            .filter-section {
+
+                top:
+                    64px;
+
+            }
+
+            .event-card {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+            .event-image {
+
+                min-height:
+                    190px;
+
+            }
+
+            .event-info {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+            .event-actions {
+
+                flex-direction:
+                    column;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="nav">
+
+    <a
+        href="index.html"
+        class="logo"
+    >
+        🌊 Clean<span>Wave</span>
+    </a>
+
+
+    <nav class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a
+            href="events.html"
+            class="active"
+        >
+            Cleanup Drives
+        </a>
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="admin.html">
+            Admin
+        </a>
+
+        <a
+            href="login.html"
+            class="nav-btn"
+        >
+            Volunteer Login
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     PAGE HEADER
+===================================================== -->
+
+<section class="page-header">
+
+    <span class="eyebrow">
+        COMMUNITY CLEANUP DIRECTORY
+    </span>
+
+
+    <h1>
+        Find your
+        <br>
+        next cleanup.
+    </h1>
+
+
+    <p>
+
+        Explore upcoming community cleanup drives,
+        check volunteer capacity, view meeting points
+        and register for the event that fits you best.
+
+    </p>
+
+</section>
+
+
+
+<!-- =====================================================
+     FILTER BAR
+===================================================== -->
+
+<section class="filter-section">
+
+    <div class="filter-bar">
+
+
+        <div class="search-box">
+
+            <span>
+                🔎
+            </span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search cleanup location or event..."
+            >
+
+        </div>
+
+
+        <select
+            class="filter-select"
+            id="locationFilter"
+        >
+
+            <option value="all">
+                All Locations
+            </option>
+
+            <option value="beach">
+                Beach
+            </option>
+
+            <option value="river">
+                River
+            </option>
+
+            <option value="park">
+                Park
+            </option>
+
+            <option value="coast">
+                Coastal Area
+            </option>
+
+        </select>
+
+
+        <select
+            class="filter-select"
+            id="availabilityFilter"
+        >
+
+            <option value="all">
+                All Availability
+            </option>
+
+            <option value="available">
+                Available
+            </option>
+
+            <option value="limited">
+                Limited Slots
+            </option>
+
+        </select>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     EVENTS
+===================================================== -->
+
+<main class="events-main">
+
+    <div class="events-layout">
+
+
+        <!-- =================================================
+             EVENT LIST
+        ================================================= -->
+
+        <section class="events-list">
+
+
+            <div class="results-header">
+
+                <strong>
+                    Upcoming Drives
+                </strong>
+
+                <span
+                    class="results-count"
+                    id="resultsCount"
+                >
+                    4 drives found
+                </span>
+
+            </div>
+
+
+
+            <!-- EVENT 1 -->
+
+            <article
+                class="event-card"
+                data-location="beach"
+                data-availability="available"
+            >
+
+                <div
+                    class="event-image beach"
+                ></div>
+
+
+                <div class="event-details">
+
+                    <div class="event-top">
+
+                        <span class="event-date">
+                            26 OCT 2026
+                        </span>
+
+                        <span class="event-status available">
+                            OPEN
+                        </span>
+
+                    </div>
+
+
+                    <h2>
+                        Sunrise Beach Cleanup
+                    </h2>
+
+
+                    <p class="event-location">
+                        📍 Bluewater Beach
+                    </p>
+
+
+                    <div class="event-info">
+
+                        <div class="info-item">
+
+                            <span>
+                                MEETING POINT
+                            </span>
+
+                            <strong>
+                                Point A — Main Gate
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <span>
+                                COORDINATES
+                            </span>
+
+                            <strong>
+                                30.3165° N, 78.0322° E
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <span>
+                                REQUIRED VOLUNTEERS
+                            </span>
+
+                            <strong>
+                                100 people
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <span>
+                                TIME
+                            </span>
+
+                            <strong>
+                                07:00 AM — 10:00 AM
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="capacity-header">
+
+                        <span>
+                            Volunteer capacity
+                        </span>
+
+                        <span>
+                            63 / 100
+                        </span>
+
+                    </div>
+
+
+                    <div class="capacity-bar">
+
+                        <span
+                            style="width:63%"
+                        ></span>
+
+                    </div>
+
+
+                    <div class="event-actions">
+
+                        <a
+                            class="btn"
+                            href="register.html?event=Sunrise%20Beach%20Cleanup"
+                        >
+                            Register →
+                        </a>
+
+                        <button
+                            class="btn secondary view-map"
+                            data-marker="1"
+                        >
+                            View Map
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- EVENT 2 -->
+
+            <article
+                class="event-card"
+                data-location="river"
+                data-availability="limited"
+            >
+
+                <div
+                    class="event-image river"
+                ></div>
+
+
+                <div class="event-details">
+
+                    <div class="event-top">
+
+                        <span class="event-date">
+                            28 OCT 2026
+                        </span>
+
+                        <span class="event-status limited">
+                            LIMITED
+                        </span>
+
+                    </div>
+
+
+                    <h2>
+                        River Plastic Recovery
+                    </h2>
+
+
+                    <p class="event-location">
+                        📍 Riverside Zone
+                    </p>
+
+
+                    <div class="event-info">
+
+                        <div class="info-item">
+
+                            <span>
+                                MEETING POINT
+                            </span>
+
+                            <strong>
+                                Gate 2 — Riverside Road
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <span>
+                                COORDINATES
+                            </span>
+
+                            <strong>
+                                30.3342° N, 78.0511° E
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <span>
+                                REQUIRED VOLUNTEERS
+                            </span>
+
+                            <strong>
+                                70 people
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <span>
+                                TIME
+                            </span>
+
+                            <strong>
+                                06:30 AM — 09:30 AM
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="capacity-header">
+
+                        <span>
+                            Volunteer capacity
+                        </span>
+
+                        <span>
+                            48 / 70
+                        </span>
+
+                    </div>
+
+
+                    <div class="capacity-bar">
+
+                        <span
+                            style="width:69%"
+                        ></span>
+
+                    </div>
+
+
+                    <div class="event-actions">
+
+                        <a
+                            class="btn"
+                            href="register.html?event=River%20Plastic%20Recovery"
+                        >
+                            Register →
+                        </a>
+
+                        <button
+                            class="btn secondary view-map"
+                            data-marker="2"
+                        >
+                            View Map
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- EVENT 3 -->
+
+            <article
+                class="event-card"
+                data-location="park"
+                data-availability="available"
+            >
+
+                <div
+                    class="event-image park"
+                ></div>
+
+
+                <div class="event-details">
+
+                    <div class="event-top">
+
+                        <span class="event-date">
+                            30 OCT 2026
+                        </span>
+
+                        <span class="event-status available">
+                            OPEN
+                        </span>
+
+                    </div>
+
+
+                    <h2>
+                        Green Park Community Cleanup
+                    </h2>
+
+
+                    <p class="event-location">
+                        📍 Central Green Park
+                    </p>
+
+
+                    <div class="event-info">
+
+                        <div class="info-item">
+
+                            <span>
+                                MEETING POINT
+                            </span>
+
+                            <strong>
+                                Main Entrance
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <span>
+                                COORDINATES
+                            </span>
+
+                            <strong>
+                                30.2890° N, 78.0420° E
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <span>
+                                REQUIRED VOLUNTEERS
+                            </span>
+
+                            <strong>
+                                80 people
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <span>
+                                TIME
+                            </span>
+
+                            <strong>
+                                08:00 AM — 11:00 AM
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="capacity-header">
+
+                        <span>
+                            Volunteer capacity
+                        </span>
+
+                        <span>
+                            31 / 80
+                        </span>
+
+                    </div>
+
+
+                    <div class="capacity-bar">
+
+                        <span
+                            style="width:39%"
+                        ></span>
+
+                    </div>
+
+
+                    <div class="event-actions">
+
+                        <a
+                            class="btn"
+                            href="register.html?event=Green%20Park%20Community%20Cleanup"
+                        >
+                            Register →
+                        </a>
+
+                        <button
+                            class="btn secondary view-map"
+                            data-marker="3"
+                        >
+                            View Map
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- EVENT 4 -->
+
+            <article
+                class="event-card"
+                data-location="coast"
+                data-availability="limited"
+            >
+
+                <div
+                    class="event-image coast"
+                ></div>
+
+
+                <div class="event-details">
+
+                    <div class="event-top">
+
+                        <span class="event-date">
+                            02 NOV 2026
+                        </span>
+
+                        <span class="event-status limited">
+                            LIMITED
+                        </span>
+
+                    </div>
+
+
+                    <h2>
+                        Coastal Plastic Recovery Drive
+                    </h2>
+
+
+                    <p class="event-location">
+                        📍 Coral Coast Reserve
+                    </p>
+
+
+                    <div class="event-info">
+
+                        <div class="info-item">
+
+                            <span>
+                                MEETING POINT
+                            </span>
+
+                            <strong>
+                                Visitor Centre
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <span>
+                                COORDINATES
+                            </span>
+
+                            <strong>
+                                30.3550° N, 78.0730° E
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <span>
+                                REQUIRED VOLUNTEERS
+                            </span>
+
+                            <strong>
+                                60 people
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <span>
+                                TIME
+                            </span>
+
+                            <strong>
+                                07:30 AM — 10:30 AM
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="capacity-header">
+
+                        <span>
+                            Volunteer capacity
+                        </span>
+
+                        <span>
+                            51 / 60
+                        </span>
+
+                    </div>
+
+
+                    <div class="capacity-bar">
+
+                        <span
+                            style="width:85%"
+                        ></span>
+
+                    </div>
+
+
+                    <div class="event-actions">
+
+                        <a
+                            class="btn"
+                            href="register.html?event=Coastal%20Plastic%20Recovery%20Drive"
+                        >
+                            Register →
+                        </a>
+
+                        <button
+                            class="btn secondary view-map"
+                            data-marker="4"
+                        >
+                            View Map
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <div
+                class="no-results"
+                id="noResults"
+            >
+
+                No cleanup drives match your search.
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             MAP
+        ================================================= -->
+
+        <aside class="map-card">
+
+
+            <div class="map-header">
+
+                <h2>
+                    Cleanup Locations
+                </h2>
+
+                <p>
+                    Select "View Map" to locate a cleanup point.
+                </p>
+
+            </div>
+
+
+            <div class="map" id="cleanupMap">
+
+
+                <div class="road one"></div>
+
+                <div class="road two"></div>
+
+                <div class="road three"></div>
+
+
+                <div
+                    class="map-marker marker-1"
+                    data-name="Sunrise Beach Cleanup"
+                >
+
+                    <span>
+                        1
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="map-marker marker-2"
+                    data-name="River Plastic Recovery"
+                >
+
+                    <span>
+                        2
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="map-marker marker-3"
+                    data-name="Green Park Community Cleanup"
+                >
+
+                    <span>
+                        3
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="map-marker marker-4"
+                    data-name="Coastal Plastic Recovery Drive"
+                >
+
+                    <span>
+                        4
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="map-legend">
+
+                <div class="legend-item">
+
+                    <span class="legend-dot"></span>
+
+                    Cleanup drive location
+
+                </div>
+
+                <div class="legend-item">
+
+                    📍 Click a marker to view the event
+
+                </div>
+
+            </div>
+
+
+        </aside>
+
+
+    </div>
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-logo">
+        🌊 Clean<span>Wave</span>
+    </div>
+
+    <p>
+        Community Cleanup & Environmental Impact Platform
+    </p>
+
+    <p class="copyright">
+        © 2026 CleanWave • Built for a cleaner tomorrow.
+    </p>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+    /* =====================================================
+       SEARCH + FILTER
+    ===================================================== */
+
+    const searchInput =
+        document.getElementById(
+            "searchInput"
+        );
+
+
+    const locationFilter =
+        document.getElementById(
+            "locationFilter"
+        );
+
+
+    const availabilityFilter =
+        document.getElementById(
+            "availabilityFilter"
+        );
+
+
+    const eventCards =
+        document.querySelectorAll(
+            ".event-card"
+        );
+
+
+    const resultsCount =
+        document.getElementById(
+            "resultsCount"
+        );
+
+
+    const noResults =
+        document.getElementById(
+            "noResults"
+        );
+
+
+    function filterEvents() {
+
+
+        const search =
+            searchInput.value
+                .toLowerCase()
+                .trim();
+
+
+        const location =
+            locationFilter.value;
+
+
+        const availability =
+            availabilityFilter.value;
+
+
+        let visibleCount = 0;
+
+
+        eventCards.forEach(
+            card => {
+
+
+                const text =
+                    card.innerText
+                        .toLowerCase();
+
+
+                const cardLocation =
+                    card.dataset.location;
+
+
+                const cardAvailability =
+                    card.dataset.availability;
+
+
+                const matchesSearch =
+                    text.includes(search);
+
+
+                const matchesLocation =
+                    location === "all" ||
+                    cardLocation === location;
+
+
+                const matchesAvailability =
+                    availability === "all" ||
+                    cardAvailability === availability;
+
+
+                if (
+                    matchesSearch &&
+                    matchesLocation &&
+                    matchesAvailability
+                ) {
+
+                    card.style.display =
+                        "grid";
+
+                    visibleCount++;
+
+                } else {
+
+                    card.style.display =
+                        "none";
+
+                }
+
+            }
+        );
+
+
+        resultsCount.textContent =
+            visibleCount +
+            (
+                visibleCount === 1
+                    ? " drive found"
+                    : " drives found"
+            );
+
+
+        noResults.style.display =
+            visibleCount === 0
+                ? "block"
+                : "none";
+
+    }
+
+
+    searchInput.addEventListener(
+        "input",
+        filterEvents
+    );
+
+
+    locationFilter.addEventListener(
+        "change",
+        filterEvents
+    );
+
+
+    availabilityFilter.addEventListener(
+        "change",
+        filterEvents
+    );
+
+
+
+    /* =====================================================
+       MAP MARKER CLICK
+    ===================================================== */
+
+    const markers =
+        document.querySelectorAll(
+            ".map-marker"
+        );
+
+
+    markers.forEach(
+        marker => {
+
+            marker.addEventListener(
+                "click",
+                () => {
+
+                    alert(
+                        "Cleanup Drive: " +
+                        marker.dataset.name
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+
+    /* =====================================================
+       VIEW MAP BUTTON
+    ===================================================== */
+
+    const viewMapButtons =
+        document.querySelectorAll(
+            ".view-map"
+        );
+
+
+    viewMapButtons.forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const markerNumber =
+                        button.dataset.marker;
+
+
+                    const target =
+                        document.querySelector(
+                            ".marker-" +
+                            markerNumber
+                        );
+
+
+                    document
+                        .getElementById(
+                            "cleanupMap"
+                        )
+                        .scrollIntoView({
+                            behavior: "smooth",
+                            block: "center"
+                        });
+
+
+                    setTimeout(
+                        () => {
+
+                            target.style.transform =
+                                "rotate(-45deg) scale(1.35)";
+
+
+                            setTimeout(
+                                () => {
+
+                                    target.style.transform =
+                                        "rotate(-45deg) scale(1)";
+
+                                },
+                                900
+                            );
+
+                        },
+                        500
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>
+```

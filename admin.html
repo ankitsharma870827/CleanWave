@@ -1,0 +1,2534 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Dashboard | CleanWave</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        /* =====================================================
+           ADMIN HEADER
+        ===================================================== */
+
+        .admin-header {
+
+            padding: 65px 7% 45px;
+
+            background: #eaf2ee;
+
+        }
+
+
+        .admin-header h1 {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                clamp(40px, 6vw, 70px);
+
+            line-height: .95;
+
+            letter-spacing: -3px;
+
+            margin: 12px 0 15px;
+
+        }
+
+
+        .admin-header p {
+
+            max-width: 650px;
+
+            color: var(--muted);
+
+            font-size: 10px;
+
+            line-height: 1.8;
+
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        .admin-main {
+
+            padding: 45px 7% 90px;
+
+        }
+
+
+        .admin-container {
+
+            max-width: 1250px;
+
+            margin: auto;
+
+        }
+
+
+        /* =====================================================
+           ADMIN TOP BAR
+        ===================================================== */
+
+        .admin-topbar {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+
+            padding: 18px 20px;
+
+            background: var(--dark);
+
+            color: white;
+
+            border-radius: 12px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .admin-user {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+        }
+
+
+        .admin-avatar {
+
+            width: 38px;
+
+            height: 38px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: var(--green);
+
+            border-radius: 50%;
+
+            font-size: 15px;
+
+        }
+
+
+        .admin-user strong {
+
+            display: block;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size: 11px;
+
+        }
+
+
+        .admin-user span {
+
+            color: #9ebbb1;
+
+            font-size: 7px;
+
+        }
+
+
+        .live-status {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            color: #a8cbbb;
+
+            font-size: 8px;
+
+        }
+
+
+        .live-dot {
+
+            width: 7px;
+
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #70bd93;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(112,189,147,.12);
+
+        }
+
+
+        /* =====================================================
+           STATISTICS
+        ===================================================== */
+
+        .admin-stats {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 13px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .admin-stat {
+
+            background: white;
+
+            border: 1px solid var(--border);
+
+            border-radius: 12px;
+
+            padding: 21px;
+
+        }
+
+
+        .admin-stat small {
+
+            display: block;
+
+            color: var(--muted);
+
+            font-size: 8px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .admin-stat strong {
+
+            display: block;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size: 28px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .admin-stat span {
+
+            color: #52806b;
+
+            font-size: 7px;
+
+        }
+
+
+        /* =====================================================
+           TWO COLUMN
+        ===================================================== */
+
+        .admin-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1.2fr .8fr;
+
+            gap: 18px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .admin-card {
+
+            background: white;
+
+            border: 1px solid var(--border);
+
+            border-radius: 14px;
+
+            padding: 24px;
+
+        }
+
+
+        .card-heading {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: flex-start;
+
+            gap: 15px;
+
+            margin-bottom: 22px;
+
+        }
+
+
+        .card-heading h2 {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size: 21px;
+
+        }
+
+
+        .card-heading p {
+
+            color: var(--muted);
+
+            font-size: 8px;
+
+            margin-top: 4px;
+
+        }
+
+
+        /* =====================================================
+           ADD EVENT FORM
+        ===================================================== */
+
+        .event-form {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+
+        }
+
+
+        .form-group {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 6px;
+
+        }
+
+
+        .form-group.full {
+
+            grid-column: 1 / -1;
+
+        }
+
+
+        .form-group label {
+
+            color: #49665b;
+
+            font-size: 8px;
+
+            font-weight: 700;
+
+        }
+
+
+        .form-group input,
+        .form-group select {
+
+            padding: 11px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 7px;
+
+            background: #fbfdfc;
+
+            font-family: inherit;
+
+            font-size: 9px;
+
+            outline: none;
+
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus {
+
+            border-color:
+                var(--green);
+
+        }
+
+
+        .add-event-btn {
+
+            grid-column: 1 / -1;
+
+            margin-top: 5px;
+
+        }
+
+
+        /* =====================================================
+           EVENT TABLE
+        ===================================================== */
+
+        .table-card {
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .table-tools {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .search-box {
+
+            width: 260px;
+
+            padding: 11px 13px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 7px;
+
+            font-size: 9px;
+
+            outline: none;
+
+        }
+
+
+        .filter-select {
+
+            padding: 10px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 7px;
+
+            font-size: 8px;
+
+            background: white;
+
+        }
+
+
+        .table-wrapper {
+
+            overflow-x: auto;
+
+        }
+
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 750px;
+
+        }
+
+
+        th {
+
+            text-align: left;
+
+            padding: 12px;
+
+            background: #f2f7f4;
+
+            color: #4c685e;
+
+            font-size: 7px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .5px;
+
+        }
+
+
+        td {
+
+            padding: 14px 12px;
+
+            border-bottom: 1px solid #edf1ef;
+
+            font-size: 8px;
+
+            vertical-align: middle;
+
+        }
+
+
+        tr:last-child td {
+
+            border-bottom: none;
+
+        }
+
+
+        .event-name {
+
+            font-weight: 700;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size: 9px;
+
+        }
+
+
+        .event-location {
+
+            color: var(--muted);
+
+            margin-top: 3px;
+
+            font-size: 7px;
+
+        }
+
+
+        .status {
+
+            display: inline-block;
+
+            padding: 6px 8px;
+
+            border-radius: 5px;
+
+            font-size: 7px;
+
+            font-weight: 700;
+
+        }
+
+
+        .status.open {
+
+            background: #e6f4ec;
+
+            color: #367357;
+
+        }
+
+
+        .status.full {
+
+            background: #f7e9e6;
+
+            color: #9a5146;
+
+        }
+
+
+        .capacity-mini {
+
+            width: 90px;
+
+        }
+
+
+        .capacity-mini-bar {
+
+            height: 5px;
+
+            background: #e5eee9;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            margin-top: 5px;
+
+        }
+
+
+        .capacity-mini-bar span {
+
+            display: block;
+
+            height: 100%;
+
+            background: var(--green);
+
+        }
+
+
+        .delete-btn {
+
+            border: none;
+
+            background: #f8eeee;
+
+            color: #9a5146;
+
+            padding: 7px 9px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            font-size: 7px;
+
+        }
+
+
+        .delete-btn:hover {
+
+            background: #f2dddd;
+
+        }
+
+
+        /* =====================================================
+           REGISTRATION CARD
+        ===================================================== */
+
+        .registration-list {
+
+            display: grid;
+
+            gap: 9px;
+
+        }
+
+
+        .registration {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 12px;
+
+            padding: 12px;
+
+            background: #f7faf8;
+
+            border-radius: 8px;
+
+        }
+
+
+        .registration-left {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+        }
+
+
+        .person-avatar {
+
+            width: 32px;
+
+            height: 32px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: var(--green-light);
+
+            border-radius: 50%;
+
+            font-size: 12px;
+
+        }
+
+
+        .registration strong {
+
+            display: block;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size: 9px;
+
+        }
+
+
+        .registration span {
+
+            display: block;
+
+            color: var(--muted);
+
+            font-size: 7px;
+
+            margin-top: 2px;
+
+        }
+
+
+        .registration-badge {
+
+            padding: 5px 7px;
+
+            border-radius: 5px;
+
+            background: white;
+
+            border: 1px solid var(--border);
+
+            color: #557266;
+
+            font-size: 6px;
+
+        }
+
+
+        /* =====================================================
+           IMPACT RECORD
+        ===================================================== */
+
+        .impact-list {
+
+            display: grid;
+
+            gap: 10px;
+
+        }
+
+
+        .impact-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 13px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 8px;
+
+        }
+
+
+        .impact-row-left {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+        }
+
+
+        .impact-icon {
+
+            width: 31px;
+
+            height: 31px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: var(--green-light);
+
+            border-radius: 7px;
+
+        }
+
+
+        .impact-row strong {
+
+            font-size: 9px;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+        }
+
+
+        .impact-row span {
+
+            color: var(--muted);
+
+            display: block;
+
+            font-size: 7px;
+
+            margin-top: 2px;
+
+        }
+
+
+        .impact-weight {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media(max-width: 1000px) {
+
+            .admin-stats {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+            .admin-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+
+        @media(max-width: 650px) {
+
+            .admin-stats {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+            .event-form {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+            .form-group.full {
+
+                grid-column: auto;
+
+            }
+
+            .table-tools {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    stretch;
+
+            }
+
+            .search-box {
+
+                width: 100%;
+
+            }
+
+            .admin-topbar {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="nav">
+
+    <a
+        href="index.html"
+        class="logo"
+    >
+        🌊 Clean<span>Wave</span>
+    </a>
+
+
+    <nav class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="events.html">
+            Cleanup Drives
+        </a>
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a
+            href="admin.html"
+            class="active"
+        >
+            Admin
+        </a>
+
+        <a
+            href="login.html"
+            class="nav-btn"
+        >
+            Volunteer Login
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<section class="admin-header">
+
+    <span class="eyebrow">
+        ADMIN CONTROL CENTER
+    </span>
+
+
+    <h1>
+        Manage the
+        <br>
+        movement.
+    </h1>
+
+
+    <p>
+
+        Manage cleanup drives, monitor volunteer
+        registrations and track environmental recovery
+        data from one central dashboard.
+
+    </p>
+
+</section>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="admin-main">
+
+    <div class="admin-container">
+
+
+        <!-- =================================================
+             ADMIN BAR
+        ================================================= -->
+
+        <div class="admin-topbar">
+
+            <div class="admin-user">
+
+                <div class="admin-avatar">
+                    ⚙️
+                </div>
+
+                <div>
+
+                    <strong>
+                        CleanWave Administrator
+                    </strong>
+
+                    <span>
+                        Community Operations
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="live-status">
+
+                <span class="live-dot"></span>
+
+                System Online
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             STATISTICS
+        ================================================= -->
+
+        <section class="admin-stats">
+
+
+            <div class="admin-stat">
+
+                <small>
+                    ACTIVE EVENTS
+                </small>
+
+                <strong id="activeEvents">
+                    4
+                </strong>
+
+                <span>
+                    ↑ 2 this month
+                </span>
+
+            </div>
+
+
+            <div class="admin-stat">
+
+                <small>
+                    REGISTERED VOLUNTEERS
+                </small>
+
+                <strong id="registeredVolunteers">
+                    142
+                </strong>
+
+                <span>
+                    ↑ 18 this week
+                </span>
+
+            </div>
+
+
+            <div class="admin-stat">
+
+                <small>
+                    AVAILABLE SLOTS
+                </small>
+
+                <strong id="availableSlots">
+                    118
+                </strong>
+
+                <span>
+                    Across all drives
+                </span>
+
+            </div>
+
+
+            <div class="admin-stat">
+
+                <small>
+                    WASTE RECOVERED
+                </small>
+
+                <strong id="adminWaste">
+                    18.6 kg
+                </strong>
+
+                <span>
+                    This month
+                </span>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             ADD EVENT + REGISTRATIONS
+        ================================================= -->
+
+        <section class="admin-grid">
+
+
+            <!-- ADD EVENT -->
+
+            <div class="admin-card">
+
+                <div class="card-heading">
+
+                    <div>
+
+                        <h2>
+                            Create Cleanup Drive
+                        </h2>
+
+                        <p>
+                            Add a new event to the directory.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <form
+                    class="event-form"
+                    id="eventForm"
+                >
+
+
+                    <div class="form-group full">
+
+                        <label>
+                            Event Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="eventName"
+                            placeholder="e.g. Lake Restoration Cleanup"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="eventDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Required Volunteers
+                        </label>
+
+                        <input
+                            type="number"
+                            id="eventCapacity"
+                            min="1"
+                            placeholder="100"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Location
+                        </label>
+
+                        <input
+                            type="text"
+                            id="eventLocation"
+                            placeholder="Beach / River / Park"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Meeting Point
+                        </label>
+
+                        <input
+                            type="text"
+                            id="eventMeeting"
+                            placeholder="Main Gate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Latitude
+                        </label>
+
+                        <input
+                            type="number"
+                            step="any"
+                            id="eventLat"
+                            placeholder="31.224"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Longitude
+                        </label>
+
+                        <input
+                            type="number"
+                            step="any"
+                            id="eventLng"
+                            placeholder="75.770"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button
+                        class="btn add-event-btn"
+                        type="submit"
+                    >
+                        + Create Cleanup Drive
+                    </button>
+
+
+                </form>
+
+            </div>
+
+
+
+            <!-- RECENT REGISTRATIONS -->
+
+            <div class="admin-card">
+
+                <div class="card-heading">
+
+                    <div>
+
+                        <h2>
+                            Recent Registrations
+                        </h2>
+
+                        <p>
+                            Latest volunteer RSVPs.
+                        </p>
+
+                    </div>
+
+                    <span class="badge">
+                        LIVE
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="registration-list"
+                    id="registrationList"
+                >
+
+                    <div class="registration">
+
+                        <div class="registration-left">
+
+                            <div class="person-avatar">
+                                👤
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Rahul Sharma
+                                </strong>
+
+                                <span>
+                                    Sunrise Beach Cleanup
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <span class="registration-badge">
+                            1 PERSON
+                        </span>
+
+                    </div>
+
+
+
+                    <div class="registration">
+
+                        <div class="registration-left">
+
+                            <div class="person-avatar">
+                                👤
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Priya Verma
+                                </strong>
+
+                                <span>
+                                    River Plastic Recovery
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <span class="registration-badge">
+                            2–5 PEOPLE
+                        </span>
+
+                    </div>
+
+
+
+                    <div class="registration">
+
+                        <div class="registration-left">
+
+                            <div class="person-avatar">
+                                👤
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Arjun Singh
+                                </strong>
+
+                                <span>
+                                    Green Park Community Cleanup
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <span class="registration-badge">
+                            1 PERSON
+                        </span>
+
+                    </div>
+
+
+
+                    <div class="registration">
+
+                        <div class="registration-left">
+
+                            <div class="person-avatar">
+                                👤
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Neha Kapoor
+                                </strong>
+
+                                <span>
+                                    Coastal Plastic Recovery Drive
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <span class="registration-badge">
+                            6–10 PEOPLE
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             EVENT DIRECTORY
+        ================================================= -->
+
+        <section class="admin-card table-card">
+
+
+            <div class="card-heading">
+
+                <div>
+
+                    <h2>
+                        Cleanup Drive Directory
+                    </h2>
+
+                    <p>
+                        Manage all community cleanup events.
+                    </p>
+
+                </div>
+
+                <span class="badge">
+                    4 EVENTS
+                </span>
+
+            </div>
+
+
+
+            <div class="table-tools">
+
+                <input
+                    type="search"
+                    class="search-box"
+                    id="searchEvents"
+                    placeholder="Search event or location..."
+                >
+
+
+                <select
+                    class="filter-select"
+                    id="statusFilter"
+                >
+
+                    <option value="all">
+                        All Events
+                    </option>
+
+                    <option value="open">
+                        Open
+                    </option>
+
+                    <option value="full">
+                        Full
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Cleanup Drive
+                            </th>
+
+                            <th>
+                                Date
+                            </th>
+
+                            <th>
+                                Location
+                            </th>
+
+                            <th>
+                                Volunteers
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="eventTableBody">
+
+
+                        <tr
+                            data-status="open"
+                            data-search="sunrise beach cleanup beach point a"
+                        >
+
+                            <td>
+
+                                <div class="event-name">
+                                    Sunrise Beach Cleanup
+                                </div>
+
+                                <div class="event-location">
+                                    Coastal Zone
+                                </div>
+
+                            </td>
+
+                            <td>
+                                26 Oct 2026
+                            </td>
+
+                            <td>
+                                Beach Area
+                            </td>
+
+                            <td>
+
+                                <div class="capacity-mini">
+
+                                    63 / 100
+
+                                    <div class="capacity-mini-bar">
+
+                                        <span
+                                            style="width:63%"
+                                        ></span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+                            <td>
+
+                                <span class="status open">
+                                    OPEN
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <button
+                                    class="delete-btn"
+                                    onclick="deleteEvent(this)"
+                                >
+                                    Delete
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr
+                            data-status="open"
+                            data-search="river plastic recovery river gate 2"
+                        >
+
+                            <td>
+
+                                <div class="event-name">
+                                    River Plastic Recovery
+                                </div>
+
+                                <div class="event-location">
+                                    Riverside Zone
+                                </div>
+
+                            </td>
+
+                            <td>
+                                28 Oct 2026
+                            </td>
+
+                            <td>
+                                Riverside
+                            </td>
+
+                            <td>
+
+                                <div class="capacity-mini">
+
+                                    48 / 70
+
+                                    <div class="capacity-mini-bar">
+
+                                        <span
+                                            style="width:69%"
+                                        ></span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+                            <td>
+
+                                <span class="status open">
+                                    OPEN
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <button
+                                    class="delete-btn"
+                                    onclick="deleteEvent(this)"
+                                >
+                                    Delete
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr
+                            data-status="open"
+                            data-search="green park community cleanup park main entrance"
+                        >
+
+                            <td>
+
+                                <div class="event-name">
+                                    Green Park Community Cleanup
+                                </div>
+
+                                <div class="event-location">
+                                    City Park
+                                </div>
+
+                            </td>
+
+                            <td>
+                                30 Oct 2026
+                            </td>
+
+                            <td>
+                                Green Park
+                            </td>
+
+                            <td>
+
+                                <div class="capacity-mini">
+
+                                    31 / 80
+
+                                    <div class="capacity-mini-bar">
+
+                                        <span
+                                            style="width:39%"
+                                        ></span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+                            <td>
+
+                                <span class="status open">
+                                    OPEN
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <button
+                                    class="delete-btn"
+                                    onclick="deleteEvent(this)"
+                                >
+                                    Delete
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr
+                            data-status="full"
+                            data-search="coastal plastic recovery coastal visitor centre"
+                        >
+
+                            <td>
+
+                                <div class="event-name">
+                                    Coastal Plastic Recovery Drive
+                                </div>
+
+                                <div class="event-location">
+                                    Coastal Zone
+                                </div>
+
+                            </td>
+
+                            <td>
+                                02 Nov 2026
+                            </td>
+
+                            <td>
+                                Coastal Area
+                            </td>
+
+                            <td>
+
+                                <div class="capacity-mini">
+
+                                    51 / 60
+
+                                    <div class="capacity-mini-bar">
+
+                                        <span
+                                            style="width:85%"
+                                        ></span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+                            <td>
+
+                                <span class="status full">
+                                    NEAR FULL
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <button
+                                    class="delete-btn"
+                                    onclick="deleteEvent(this)"
+                                >
+                                    Delete
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             IMPACT RECORD
+        ================================================= -->
+
+        <section class="admin-card">
+
+
+            <div class="card-heading">
+
+                <div>
+
+                    <h2>
+                        Waste Recovery Records
+                    </h2>
+
+                    <p>
+                        Material collected by category.
+                    </p>
+
+                </div>
+
+                <span class="badge">
+                    18.6 KG TOTAL
+                </span>
+
+            </div>
+
+
+            <div class="impact-list">
+
+
+                <div class="impact-row">
+
+                    <div class="impact-row-left">
+
+                        <div class="impact-icon">
+                            🧴
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Plastic Bottles
+                            </strong>
+
+                            <span>
+                                Containers and packaging
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="impact-weight"
+                        id="adminPlastic"
+                    >
+                        7.4 kg
+                    </div>
+
+                </div>
+
+
+
+                <div class="impact-row">
+
+                    <div class="impact-row-left">
+
+                        <div class="impact-icon">
+                            🪢
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Fishing Nets
+                            </strong>
+
+                            <span>
+                                Abandoned fishing materials
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="impact-weight"
+                        id="adminNets"
+                    >
+                        4.8 kg
+                    </div>
+
+                </div>
+
+
+
+                <div class="impact-row">
+
+                    <div class="impact-row-left">
+
+                        <div class="impact-icon">
+                            🫙
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Glass
+                            </strong>
+
+                            <span>
+                                Bottles and glass fragments
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="impact-weight"
+                        id="adminGlass"
+                    >
+                        3.2 kg
+                    </div>
+
+                </div>
+
+
+
+                <div class="impact-row">
+
+                    <div class="impact-row-left">
+
+                        <div class="impact-icon">
+                            🔵
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Microplastics
+                            </strong>
+
+                            <span>
+                                Small plastic particles
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="impact-weight"
+                        id="adminMicro"
+                    >
+                        3.2 kg
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </div>
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-logo">
+        🌊 Clean<span>Wave</span>
+    </div>
+
+    <p>
+        Community Cleanup & Environmental Impact Platform
+    </p>
+
+    <p class="copyright">
+        © 2026 CleanWave • Built for a cleaner tomorrow.
+    </p>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+    /* =====================================================
+       CREATE EVENT
+    ===================================================== */
+
+    const eventForm =
+        document.getElementById(
+            "eventForm"
+        );
+
+
+    eventForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const name =
+                document.getElementById(
+                    "eventName"
+                ).value.trim();
+
+
+            const date =
+                document.getElementById(
+                    "eventDate"
+                ).value;
+
+
+            const capacity =
+                parseInt(
+                    document.getElementById(
+                        "eventCapacity"
+                    ).value
+                );
+
+
+            const location =
+                document.getElementById(
+                    "eventLocation"
+                ).value.trim();
+
+
+            const meeting =
+                document.getElementById(
+                    "eventMeeting"
+                ).value.trim();
+
+
+            const latitude =
+                document.getElementById(
+                    "eventLat"
+                ).value;
+
+
+            const longitude =
+                document.getElementById(
+                    "eventLng"
+                ).value;
+
+
+            if (
+                !name ||
+                !date ||
+                !capacity ||
+                !location ||
+                !meeting ||
+                !latitude ||
+                !longitude
+            ) {
+
+                alert(
+                    "Please fill all event details."
+                );
+
+                return;
+
+            }
+
+
+            const formattedDate =
+                new Date(
+                    date + "T00:00:00"
+                ).toLocaleDateString(
+                    "en-GB",
+                    {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric"
+                    }
+                );
+
+
+            const row =
+                document.createElement(
+                    "tr"
+                );
+
+
+            row.dataset.status =
+                "open";
+
+
+            row.dataset.search =
+                (
+                    name +
+                    " " +
+                    location +
+                    " " +
+                    meeting
+                ).toLowerCase();
+
+
+            row.innerHTML = `
+
+                <td>
+
+                    <div class="event-name">
+                        ${escapeHTML(name)}
+                    </div>
+
+                    <div class="event-location">
+                        ${escapeHTML(meeting)}
+                    </div>
+
+                </td>
+
+
+                <td>
+                    ${formattedDate}
+                </td>
+
+
+                <td>
+                    ${escapeHTML(location)}
+                </td>
+
+
+                <td>
+
+                    <div class="capacity-mini">
+
+                        0 / ${capacity}
+
+                        <div class="capacity-mini-bar">
+
+                            <span
+                                style="width:0%"
+                            ></span>
+
+                        </div>
+
+                    </div>
+
+                </td>
+
+
+                <td>
+
+                    <span class="status open">
+                        OPEN
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteEvent(this)"
+                    >
+                        Delete
+                    </button>
+
+                </td>
+
+            `;
+
+
+            document.getElementById(
+                "eventTableBody"
+            ).appendChild(row);
+
+
+            updateEventCount();
+
+
+            eventForm.reset();
+
+
+            alert(
+                "Cleanup drive created successfully!"
+            );
+
+        }
+    );
+
+
+
+    /* =====================================================
+       DELETE EVENT
+    ===================================================== */
+
+    function deleteEvent(button) {
+
+        const row =
+            button.closest("tr");
+
+
+        const eventName =
+            row.querySelector(
+                ".event-name"
+            ).textContent;
+
+
+        const confirmed =
+            confirm(
+                "Delete " +
+                eventName +
+                "?"
+            );
+
+
+        if (
+            confirmed
+        ) {
+
+            row.remove();
+
+            updateEventCount();
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       EVENT COUNT
+    ===================================================== */
+
+    function updateEventCount() {
+
+        const rows =
+            document.querySelectorAll(
+                "#eventTableBody tr"
+            );
+
+
+        document.getElementById(
+            "activeEvents"
+        ).textContent =
+            rows.length;
+
+
+        const badge =
+            document.querySelector(
+                ".table-card .badge"
+            );
+
+
+        if (badge) {
+
+            badge.textContent =
+                rows.length +
+                " EVENTS";
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       SEARCH
+    ===================================================== */
+
+    const searchInput =
+        document.getElementById(
+            "searchEvents"
+        );
+
+
+    searchInput.addEventListener(
+        "input",
+        filterEvents
+    );
+
+
+
+    /* =====================================================
+       STATUS FILTER
+    ===================================================== */
+
+    const statusFilter =
+        document.getElementById(
+            "statusFilter"
+        );
+
+
+    statusFilter.addEventListener(
+        "change",
+        filterEvents
+    );
+
+
+
+    /* =====================================================
+       FILTER FUNCTION
+    ===================================================== */
+
+    function filterEvents() {
+
+        const search =
+            searchInput.value
+            .toLowerCase()
+            .trim();
+
+
+        const status =
+            statusFilter.value;
+
+
+        const rows =
+            document.querySelectorAll(
+                "#eventTableBody tr"
+            );
+
+
+        rows.forEach(
+            row => {
+
+                const rowText =
+                    row.dataset.search ||
+                    row.textContent.toLowerCase();
+
+
+                const rowStatus =
+                    row.dataset.status ||
+                    "open";
+
+
+                const matchesSearch =
+                    rowText.includes(search);
+
+
+                const matchesStatus =
+                    status === "all" ||
+                    rowStatus === status;
+
+
+                if (
+                    matchesSearch &&
+                    matchesStatus
+                ) {
+
+                    row.style.display =
+                        "";
+
+                } else {
+
+                    row.style.display =
+                        "none";
+
+                }
+
+            }
+        );
+
+    }
+
+
+
+    /* =====================================================
+       SECURITY HELPER
+       Prevents HTML injection when
+       admin creates an event.
+    ===================================================== */
+
+    function escapeHTML(value) {
+
+        return value
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+
+    /* =====================================================
+       LOAD VOLUNTEER REGISTRATION
+    ===================================================== */
+
+    const savedRegistration =
+        localStorage.getItem(
+            "cleanwaveRegistration"
+        );
+
+
+    if (
+        savedRegistration
+    ) {
+
+        try {
+
+            const data =
+                JSON.parse(
+                    savedRegistration
+                );
+
+
+            const registrationList =
+                document.getElementById(
+                    "registrationList"
+                );
+
+
+            const newRegistration =
+                document.createElement(
+                    "div"
+                );
+
+
+            newRegistration.className =
+                "registration";
+
+
+            newRegistration.innerHTML = `
+
+                <div class="registration-left">
+
+                    <div class="person-avatar">
+                        👤
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            ${escapeHTML(data.name)}
+                        </strong>
+
+                        <span>
+                            ${escapeHTML(data.event)}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <span class="registration-badge">
+                    ${escapeHTML(data.groupSize)}
+                    PEOPLE
+                </span>
+
+            `;
+
+
+            registrationList.prepend(
+                newRegistration
+            );
+
+
+            document.getElementById(
+                "registeredVolunteers"
+            ).textContent =
+                "143";
+
+        }
+        catch(error) {
+
+            console.log(
+                "Registration data unavailable."
+            );
+
+        }
+
+    }
+
+
+</script>
+
+
+</body>
+
+</html>
+```

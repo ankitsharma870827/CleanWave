@@ -1,0 +1,2226 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Impact Dashboard | CleanWave</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .dashboard-header {
+
+            padding:
+                70px 7% 50px;
+
+            background:
+                #eaf2ee;
+
+        }
+
+
+        .dashboard-header h1 {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                clamp(42px, 6vw, 75px);
+
+            line-height:
+                .95;
+
+            letter-spacing:
+                -3px;
+
+            margin:
+                12px 0 15px;
+
+        }
+
+
+        .dashboard-header p {
+
+            max-width:
+                650px;
+
+            color:
+                var(--muted);
+
+            font-size:
+                10px;
+
+            line-height:
+                1.8;
+
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        .dashboard-main {
+
+            padding:
+                50px 7% 90px;
+
+        }
+
+
+        .dashboard-container {
+
+            max-width:
+                1250px;
+
+            margin:
+                auto;
+
+        }
+
+
+        /* =====================================================
+           STAT CARDS
+        ===================================================== */
+
+        .stats-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(4,1fr);
+
+            gap:
+                13px;
+
+            margin-bottom:
+                35px;
+
+        }
+
+
+        .stat-card {
+
+            background:
+                white;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                13px;
+
+            padding:
+                22px;
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
+        }
+
+
+        .stat-card::after {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            width:
+                80px;
+
+            height:
+                80px;
+
+            border-radius:
+                50%;
+
+            background:
+                var(--green-light);
+
+            right:
+                -30px;
+
+            bottom:
+                -30px;
+
+        }
+
+
+        .stat-icon {
+
+            font-size:
+                20px;
+
+            margin-bottom:
+                15px;
+
+        }
+
+
+        .stat-card strong {
+
+            display:
+                block;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                31px;
+
+            line-height:
+                1;
+
+            margin-bottom:
+                6px;
+
+        }
+
+
+        .stat-card span {
+
+            color:
+                var(--muted);
+
+            font-size:
+                8px;
+
+        }
+
+
+        /* =====================================================
+           DASHBOARD GRID
+        ===================================================== */
+
+        .dashboard-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1.15fr .85fr;
+
+            gap:
+                18px;
+
+        }
+
+
+        .dashboard-card {
+
+            background:
+                white;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                15px;
+
+            padding:
+                25px;
+
+        }
+
+
+        .card-heading {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                start;
+
+            gap:
+                15px;
+
+            margin-bottom:
+                25px;
+
+        }
+
+
+        .card-heading h2 {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                22px;
+
+        }
+
+
+        .card-heading p {
+
+            color:
+                var(--muted);
+
+            font-size:
+                8px;
+
+            margin-top:
+                4px;
+
+        }
+
+
+        .badge {
+
+            padding:
+                7px 9px;
+
+            background:
+                var(--green-light);
+
+            color:
+                #39755c;
+
+            border-radius:
+                6px;
+
+            font-size:
+                7px;
+
+            font-weight:
+                700;
+
+            white-space:
+                nowrap;
+
+        }
+
+
+        /* =====================================================
+           VOLUNTEER CAPACITY
+        ===================================================== */
+
+        .capacity-number {
+
+            display:
+                flex;
+
+            align-items:
+                end;
+
+            gap:
+                8px;
+
+            margin-bottom:
+                10px;
+
+        }
+
+
+        .capacity-number strong {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                50px;
+
+            line-height:
+                1;
+
+        }
+
+
+        .capacity-number span {
+
+            color:
+                var(--muted);
+
+            font-size:
+                9px;
+
+            padding-bottom:
+                5px;
+
+        }
+
+
+        .large-progress {
+
+            height:
+                12px;
+
+            background:
+                #e4eee9;
+
+            border-radius:
+                30px;
+
+            overflow:
+                hidden;
+
+            margin:
+                12px 0 9px;
+
+        }
+
+
+        .large-progress span {
+
+            display:
+                block;
+
+            height:
+                100%;
+
+            width:
+                63%;
+
+            background:
+                var(--green);
+
+            border-radius:
+                30px;
+
+            transition:
+                width .4s ease;
+
+        }
+
+
+        .capacity-info {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            color:
+                var(--muted);
+
+            font-size:
+                8px;
+
+        }
+
+
+        /* =====================================================
+           VOLUNTEER COUNTER
+        ===================================================== */
+
+        .counter-box {
+
+            margin-top:
+                25px;
+
+            padding:
+                20px;
+
+            background:
+                #f5f9f7;
+
+            border-radius:
+                10px;
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+        }
+
+
+        .counter-box p {
+
+            color:
+                var(--muted);
+
+            font-size:
+                8px;
+
+        }
+
+
+        .counter-controls {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                13px;
+
+        }
+
+
+        .counter-btn {
+
+            width:
+                34px;
+
+            height:
+                34px;
+
+            border:
+                1px solid var(--border);
+
+            background:
+                white;
+
+            border-radius:
+                7px;
+
+            cursor:
+                pointer;
+
+            font-size:
+                16px;
+
+            color:
+                var(--dark);
+
+        }
+
+
+        .counter-btn:hover {
+
+            background:
+                var(--green-light);
+
+        }
+
+
+        #volunteerCounter {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                22px;
+
+            font-weight:
+                700;
+
+            min-width:
+                35px;
+
+            text-align:
+                center;
+
+        }
+
+
+        /* =====================================================
+           WASTE CALCULATOR
+        ===================================================== */
+
+        .waste-card {
+
+            grid-column:
+                1 / -1;
+
+        }
+
+
+        .waste-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:
+                15px;
+
+        }
+
+
+        .waste-item {
+
+            padding:
+                18px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                10px;
+
+            background:
+                #fbfdfc;
+
+        }
+
+
+        .waste-top {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            margin-bottom:
+                12px;
+
+        }
+
+
+        .waste-name {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                9px;
+
+        }
+
+
+        .waste-icon {
+
+            width:
+                33px;
+
+            height:
+                33px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            background:
+                var(--green-light);
+
+            border-radius:
+                8px;
+
+            font-size:
+                17px;
+
+        }
+
+
+        .waste-name strong {
+
+            display:
+                block;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                12px;
+
+        }
+
+
+        .waste-name span {
+
+            display:
+                block;
+
+            color:
+                var(--muted);
+
+            font-size:
+                7px;
+
+        }
+
+
+        .waste-input {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                7px;
+
+        }
+
+
+        .waste-input input {
+
+            width:
+                90px;
+
+            padding:
+                9px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                6px;
+
+            font-family:
+                inherit;
+
+            font-size:
+                9px;
+
+            text-align:
+                right;
+
+        }
+
+
+        .waste-input span {
+
+            color:
+                var(--muted);
+
+            font-size:
+                8px;
+
+        }
+
+
+        /* =====================================================
+           TOTAL WASTE
+        ===================================================== */
+
+        .total-waste {
+
+            margin-top:
+                18px;
+
+            padding:
+                22px;
+
+            border-radius:
+                11px;
+
+            background:
+                var(--dark);
+
+            color:
+                white;
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+        }
+
+
+        .total-waste span {
+
+            color:
+                #9ebbb1;
+
+            font-size:
+                8px;
+
+        }
+
+
+        .total-waste strong {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                35px;
+
+        }
+
+
+        /* =====================================================
+           WASTE VISUAL SUMMARY
+        ===================================================== */
+
+        .waste-summary {
+
+            margin-top:
+                25px;
+
+        }
+
+
+        .summary-row {
+
+            margin-bottom:
+                16px;
+
+        }
+
+
+        .summary-label {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            font-size:
+                8px;
+
+            margin-bottom:
+                6px;
+
+        }
+
+
+        .summary-label span {
+
+            color:
+                var(--muted);
+
+        }
+
+
+        .summary-bar {
+
+            height:
+                9px;
+
+            background:
+                #e8efeb;
+
+            border-radius:
+                20px;
+
+            overflow:
+                hidden;
+
+        }
+
+
+        .summary-bar span {
+
+            display:
+                block;
+
+            height:
+                100%;
+
+            width:
+                0%;
+
+            background:
+                var(--green);
+
+            border-radius:
+                20px;
+
+            transition:
+                width .4s ease;
+
+        }
+
+
+        /* =====================================================
+           IMPACT MESSAGE
+        ===================================================== */
+
+        .impact-message {
+
+            margin-top:
+                20px;
+
+            padding:
+                16px;
+
+            border-left:
+                3px solid var(--green);
+
+            background:
+                #f0f7f3;
+
+            color:
+                #526b62;
+
+            font-size:
+                8px;
+
+            line-height:
+                1.7;
+
+        }
+
+
+        /* =====================================================
+           QUICK ACTIONS
+        ===================================================== */
+
+        .quick-actions {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(2,1fr);
+
+            gap:
+                10px;
+
+            margin-top:
+                18px;
+
+        }
+
+
+        .quick-action {
+
+            padding:
+                15px;
+
+            background:
+                #f5f9f7;
+
+            border-radius:
+                8px;
+
+            border:
+                1px solid transparent;
+
+            transition:
+                .2s;
+
+        }
+
+
+        .quick-action:hover {
+
+            border-color:
+                var(--green);
+
+            background:
+                var(--green-light);
+
+        }
+
+
+        .quick-action strong {
+
+            display:
+                block;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                11px;
+
+            margin-bottom:
+                4px;
+
+        }
+
+
+        .quick-action span {
+
+            color:
+                var(--muted);
+
+            font-size:
+                7px;
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media(max-width: 1000px) {
+
+            .stats-grid {
+
+                grid-template-columns:
+                    repeat(2,1fr);
+
+            }
+
+            .dashboard-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+            .waste-card {
+
+                grid-column:
+                    auto;
+
+            }
+
+        }
+
+
+        @media(max-width: 600px) {
+
+            .stats-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+            .waste-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+            .counter-box {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+
+                gap:
+                    15px;
+
+            }
+
+            .total-waste {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+
+                gap:
+                    8px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="nav">
+
+    <a
+        href="index.html"
+        class="logo"
+    >
+        🌊 Clean<span>Wave</span>
+    </a>
+
+
+    <nav class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="events.html">
+            Cleanup Drives
+        </a>
+
+        <a
+            href="dashboard.html"
+            class="active"
+        >
+            Dashboard
+        </a>
+
+        <a href="admin.html">
+            Admin
+        </a>
+
+        <a
+            href="login.html"
+            class="nav-btn"
+        >
+            Volunteer Login
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<section class="dashboard-header">
+
+    <span class="eyebrow">
+        COMMUNITY IMPACT
+    </span>
+
+
+    <h1>
+        Measure the
+        <br>
+        change.
+    </h1>
+
+
+    <p>
+
+        Track volunteer participation, event capacity
+        and the amount of waste recovered through
+        community cleanup activities.
+
+    </p>
+
+</section>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="dashboard-main">
+
+    <div class="dashboard-container">
+
+
+        <!-- =================================================
+             STATISTICS
+        ================================================= -->
+
+        <section class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    👥
+                </div>
+
+                <strong id="totalVolunteers">
+                    12,480
+                </strong>
+
+                <span>
+                    Total Volunteers
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📍
+                </div>
+
+                <strong>
+                    84
+                </strong>
+
+                <span>
+                    Cleanup Drives
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ♻️
+                </div>
+
+                <strong id="totalRecovered">
+                    18.6 kg
+                </strong>
+
+                <span>
+                    Waste Recovered
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🌱
+                </div>
+
+                <strong>
+                    37
+                </strong>
+
+                <span>
+                    Active Communities
+                </span>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             DASHBOARD GRID
+        ================================================= -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- =================================================
+                 VOLUNTEER CAPACITY
+            ================================================= -->
+
+            <div class="dashboard-card">
+
+
+                <div class="card-heading">
+
+                    <div>
+
+                        <h2>
+                            Volunteer Participation
+                        </h2>
+
+                        <p>
+                            Sunrise Beach Cleanup
+                        </p>
+
+                    </div>
+
+
+                    <span class="badge">
+                        26 OCT 2026
+                    </span>
+
+                </div>
+
+
+                <div class="capacity-number">
+
+                    <strong id="currentVolunteers">
+                        63
+                    </strong>
+
+                    <span>
+                        / 100 volunteers
+                    </span>
+
+                </div>
+
+
+                <div class="large-progress">
+
+                    <span
+                        id="capacityProgress"
+                    ></span>
+
+                </div>
+
+
+                <div class="capacity-info">
+
+                    <span>
+                        63% capacity filled
+                    </span>
+
+                    <span>
+                        37 slots available
+                    </span>
+
+                </div>
+
+
+                <!-- COUNTER -->
+
+                <div class="counter-box">
+
+                    <div>
+
+                        <strong>
+                            Participation Counter
+                        </strong>
+
+                        <p>
+                            Update the number of registered
+                            volunteers.
+                        </p>
+
+                    </div>
+
+
+                    <div class="counter-controls">
+
+                        <button
+                            type="button"
+                            class="counter-btn"
+                            id="decreaseBtn"
+                        >
+                            −
+                        </button>
+
+
+                        <span id="volunteerCounter">
+                            63
+                        </span>
+
+
+                        <button
+                            type="button"
+                            class="counter-btn"
+                            id="increaseBtn"
+                        >
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 QUICK ACTIONS
+            ================================================= -->
+
+            <div class="dashboard-card">
+
+                <div class="card-heading">
+
+                    <div>
+
+                        <h2>
+                            Quick Actions
+                        </h2>
+
+                        <p>
+                            Manage your cleanup activity
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <a
+                    href="events.html"
+                    class="quick-action"
+                >
+
+                    <strong>
+                        📍 Find a Drive
+                    </strong>
+
+                    <span>
+                        Explore upcoming cleanup events.
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="register.html"
+                    class="quick-action"
+                >
+
+                    <strong>
+                        👥 Become a Volunteer
+                    </strong>
+
+                    <span>
+                        Register for a community cleanup.
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="admin.html"
+                    class="quick-action"
+                >
+
+                    <strong>
+                        ⚙️ Admin Panel
+                    </strong>
+
+                    <span>
+                        Manage events and impact data.
+                    </span>
+
+                </a>
+
+
+                <div class="impact-message">
+
+                    Every cleanup makes a difference.
+                    Record recovered waste accurately
+                    to keep the community impact report
+                    meaningful.
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 WASTE CALCULATOR
+            ================================================= -->
+
+            <div class="dashboard-card waste-card">
+
+
+                <div class="card-heading">
+
+                    <div>
+
+                        <h2>
+                            Marine Plastic Recovery
+                        </h2>
+
+                        <p>
+                            Enter the recovered material in kilograms.
+                        </p>
+
+                    </div>
+
+
+                    <span class="badge">
+                        LIVE CALCULATOR
+                    </span>
+
+                </div>
+
+
+
+                <div class="waste-grid">
+
+
+                    <!-- PLASTIC -->
+
+                    <div class="waste-item">
+
+                        <div class="waste-top">
+
+                            <div class="waste-name">
+
+                                <div class="waste-icon">
+                                    🧴
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        Plastic Bottles
+                                    </strong>
+
+                                    <span>
+                                        Recovered plastic containers
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="waste-input">
+
+                                <input
+                                    type="number"
+                                    id="plastic"
+                                    value="0"
+                                    min="0"
+                                    step="0.1"
+                                    placeholder="0"
+                                >
+
+                                <span>
+                                    kg
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- FISHING NETS -->
+
+                    <div class="waste-item">
+
+                        <div class="waste-top">
+
+                            <div class="waste-name">
+
+                                <div class="waste-icon">
+                                    🪢
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        Fishing Nets
+                                    </strong>
+
+                                    <span>
+                                        Abandoned fishing material
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="waste-input">
+
+                                <input
+                                    type="number"
+                                    id="nets"
+                                    value="0"
+                                    min="0"
+                                    step="0.1"
+                                    placeholder="0"
+                                >
+
+                                <span>
+                                    kg
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- GLASS -->
+
+                    <div class="waste-item">
+
+                        <div class="waste-top">
+
+                            <div class="waste-name">
+
+                                <div class="waste-icon">
+                                    🫙
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        Glass
+                                    </strong>
+
+                                    <span>
+                                        Recovered glass materials
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="waste-input">
+
+                                <input
+                                    type="number"
+                                    id="glass"
+                                    value="0"
+                                    min="0"
+                                    step="0.1"
+                                    placeholder="0"
+                                >
+
+                                <span>
+                                    kg
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- MICROPLASTICS -->
+
+                    <div class="waste-item">
+
+                        <div class="waste-top">
+
+                            <div class="waste-name">
+
+                                <div class="waste-icon">
+                                    🔵
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        Microplastics
+                                    </strong>
+
+                                    <span>
+                                        Small plastic particles
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="waste-input">
+
+                                <input
+                                    type="number"
+                                    id="microplastics"
+                                    value="0"
+                                    min="0"
+                                    step="0.1"
+                                    placeholder="0"
+                                >
+
+                                <span>
+                                    kg
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- TOTAL -->
+
+                <div class="total-waste">
+
+                    <span>
+                        TOTAL WASTE RECOVERED
+                    </span>
+
+
+                    <strong>
+                        <span
+                            id="totalWaste"
+                            style="
+                                color:white;
+                                font-size:35px;
+                                font-family:'Space Grotesk',sans-serif;
+                            "
+                        >
+                            0
+                        </span>
+                        kg
+                    </strong>
+
+                </div>
+
+
+
+                <!-- VISUAL SUMMARY -->
+
+                <div class="waste-summary">
+
+
+                    <div class="summary-row">
+
+                        <div class="summary-label">
+
+                            <span>
+                                🧴 Plastic Bottles
+                            </span>
+
+                            <strong id="plasticValue">
+                                0 kg
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-bar">
+
+                            <span
+                                id="plasticBar"
+                            ></span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="summary-row">
+
+                        <div class="summary-label">
+
+                            <span>
+                                🪢 Fishing Nets
+                            </span>
+
+                            <strong id="netsValue">
+                                0 kg
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-bar">
+
+                            <span
+                                id="netsBar"
+                            ></span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="summary-row">
+
+                        <div class="summary-label">
+
+                            <span>
+                                🫙 Glass
+                            </span>
+
+                            <strong id="glassValue">
+                                0 kg
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-bar">
+
+                            <span
+                                id="glassBar"
+                            ></span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="summary-row">
+
+                        <div class="summary-label">
+
+                            <span>
+                                🔵 Microplastics
+                            </span>
+
+                            <strong id="microValue">
+                                0 kg
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-bar">
+
+                            <span
+                                id="microBar"
+                            ></span>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </div>
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-logo">
+        🌊 Clean<span>Wave</span>
+    </div>
+
+    <p>
+        Community Cleanup & Environmental Impact Platform
+    </p>
+
+    <p class="copyright">
+        © 2026 CleanWave • Built for a cleaner tomorrow.
+    </p>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+    /* =====================================================
+       VOLUNTEER COUNTER
+    ===================================================== */
+
+    let volunteers = 63;
+
+    const maximumCapacity = 100;
+
+
+    const volunteerCounter =
+        document.getElementById(
+            "volunteerCounter"
+        );
+
+
+    const currentVolunteers =
+        document.getElementById(
+            "currentVolunteers"
+        );
+
+
+    const capacityProgress =
+        document.getElementById(
+            "capacityProgress"
+        );
+
+
+    const decreaseBtn =
+        document.getElementById(
+            "decreaseBtn"
+        );
+
+
+    const increaseBtn =
+        document.getElementById(
+            "increaseBtn"
+        );
+
+
+    function updateVolunteerCounter() {
+
+        volunteerCounter.textContent =
+            volunteers;
+
+
+        currentVolunteers.textContent =
+            volunteers;
+
+
+        const percentage =
+            (volunteers / maximumCapacity) * 100;
+
+
+        capacityProgress.style.width =
+            percentage + "%";
+
+    }
+
+
+    increaseBtn.addEventListener(
+        "click",
+        () => {
+
+            if (
+                volunteers <
+                maximumCapacity
+            ) {
+
+                volunteers++;
+
+                updateVolunteerCounter();
+
+            }
+
+        }
+    );
+
+
+    decreaseBtn.addEventListener(
+        "click",
+        () => {
+
+            if (
+                volunteers > 0
+            ) {
+
+                volunteers--;
+
+                updateVolunteerCounter();
+
+            }
+
+        }
+    );
+
+
+    updateVolunteerCounter();
+
+
+
+    /* =====================================================
+       WASTE CALCULATOR
+    ===================================================== */
+
+    const plasticInput =
+        document.getElementById(
+            "plastic"
+        );
+
+
+    const netsInput =
+        document.getElementById(
+            "nets"
+        );
+
+
+    const glassInput =
+        document.getElementById(
+            "glass"
+        );
+
+
+    const microInput =
+        document.getElementById(
+            "microplastics"
+        );
+
+
+    const totalWaste =
+        document.getElementById(
+            "totalWaste"
+        );
+
+
+    const totalRecovered =
+        document.getElementById(
+            "totalRecovered"
+        );
+
+
+    const plasticValue =
+        document.getElementById(
+            "plasticValue"
+        );
+
+
+    const netsValue =
+        document.getElementById(
+            "netsValue"
+        );
+
+
+    const glassValue =
+        document.getElementById(
+            "glassValue"
+        );
+
+
+    const microValue =
+        document.getElementById(
+            "microValue"
+        );
+
+
+    const plasticBar =
+        document.getElementById(
+            "plasticBar"
+        );
+
+
+    const netsBar =
+        document.getElementById(
+            "netsBar"
+        );
+
+
+    const glassBar =
+        document.getElementById(
+            "glassBar"
+        );
+
+
+    const microBar =
+        document.getElementById(
+            "microBar"
+        );
+
+
+
+    function getNumber(input) {
+
+        const value =
+            parseFloat(input.value);
+
+
+        if (
+            isNaN(value) ||
+            value < 0
+        ) {
+
+            return 0;
+
+        }
+
+
+        return value;
+
+    }
+
+
+
+    function updateWasteCalculator() {
+
+
+        const plastic =
+            getNumber(plasticInput);
+
+
+        const nets =
+            getNumber(netsInput);
+
+
+        const glass =
+            getNumber(glassInput);
+
+
+        const micro =
+            getNumber(microInput);
+
+
+        const total =
+            plastic +
+            nets +
+            glass +
+            micro;
+
+
+        totalWaste.textContent =
+            total.toFixed(1);
+
+
+        totalRecovered.textContent =
+            total.toFixed(1) + " kg";
+
+
+        plasticValue.textContent =
+            plastic.toFixed(1) + " kg";
+
+
+        netsValue.textContent =
+            nets.toFixed(1) + " kg";
+
+
+        glassValue.textContent =
+            glass.toFixed(1) + " kg";
+
+
+        microValue.textContent =
+            micro.toFixed(1) + " kg";
+
+
+        /*
+         * Find the largest category.
+         * This category gets the full bar.
+         */
+
+        const largest =
+            Math.max(
+                plastic,
+                nets,
+                glass,
+                micro,
+                1
+            );
+
+
+        plasticBar.style.width =
+            (plastic / largest * 100) + "%";
+
+
+        netsBar.style.width =
+            (nets / largest * 100) + "%";
+
+
+        glassBar.style.width =
+            (glass / largest * 100) + "%";
+
+
+        microBar.style.width =
+            (micro / largest * 100) + "%";
+
+    }
+
+
+
+    plasticInput.addEventListener(
+        "input",
+        updateWasteCalculator
+    );
+
+
+    netsInput.addEventListener(
+        "input",
+        updateWasteCalculator
+    );
+
+
+    glassInput.addEventListener(
+        "input",
+        updateWasteCalculator
+    );
+
+
+    microInput.addEventListener(
+        "input",
+        updateWasteCalculator
+    );
+
+
+    updateWasteCalculator();
+
+
+
+    /* =====================================================
+       LOAD REGISTRATION
+    ===================================================== */
+
+    const savedRegistration =
+        localStorage.getItem(
+            "cleanwaveRegistration"
+        );
+
+
+    if (
+        savedRegistration
+    ) {
+
+        try {
+
+            const registration =
+                JSON.parse(
+                    savedRegistration
+                );
+
+
+            /*
+             * Display a small personalised
+             * browser notification.
+             */
+
+            console.log(
+                "Latest CleanWave registration:",
+                registration
+            );
+
+        }
+        catch(error) {
+
+            console.log(
+                "Registration data could not be loaded."
+            );
+
+        }
+
+    }
+
+
+</script>
+
+
+</body>
+
+</html>
+```
